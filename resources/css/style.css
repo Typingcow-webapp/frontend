@@ -396,6 +396,7 @@ form input[type="submit"] {
   align-items: center;
   display: none;
   text-align: left;
+  flex-wrap: wrap;
 }
 
 table {
@@ -403,13 +404,13 @@ table {
   height: 200px;
 }
 
-tbody {
+.all-results tbody {
   display: block;
   height: 488px;
   overflow: auto;
 }
 
-tbody::-webkit-scrollbar {
+.all-results tbody::-webkit-scrollbar {
   display: none;
 }
 

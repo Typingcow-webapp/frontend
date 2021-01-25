@@ -1,6 +1,5 @@
 /***************DOM SELECTORS***************/
 
-// const RANDOM_QUOTE_API_URL = "http://api.quotable.io/random";
 const RANDOM_QUOTE_API_URL = "https://api.quotable.io/random";
 const mainContent = document.querySelector("main header");
 const time = document.querySelector("#timer");
@@ -72,6 +71,102 @@ const startTimer = () => {
               timer: `${selectedTime}s`,
             }),
           });
+
+          fetch(`${backendURL}/api/user/pb`, {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.length === 0) {
+                fetch(`${backendURL}/api/user/pb`, {
+                  method: "POST",
+                  headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    timer: `${selectedTime}s`,
+                    wpm: wpm[0].textContent,
+                    cpm: cpm.textContent,
+                    acc: acc[0].textContent,
+                  }),
+                });
+              } else {
+                let removedTimer;
+                let removedWpm;
+                let removedCpm;
+                let removedAcc;
+                let alreadyExists = false;
+                let shouldBeAdded = false;
+
+                for (let i = 0; i < data.length; i++) {
+                  if (data[i].timer === `${selectedTime}s`) {
+                    alreadyExists = true;
+
+                    if (+data[i].wpm < +wpm[0].textContent) {
+                      removedTimer = data[i].timer;
+                      removedWpm = data[i].wpm;
+                      removedCpm = data[i].cpm;
+                      removedAcc = data[i].acc;
+                      shouldBeAdded = true;
+                    }
+
+                    break;
+                  } else {
+                    continue;
+                  }
+                }
+
+                if (!alreadyExists) {
+                  fetch(`${backendURL}/api/user/pb`, {
+                    method: "POST",
+                    headers: {
+                      Authorization: "Bearer " + localStorage.getItem("token"),
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      timer: `${selectedTime}s`,
+                      wpm: wpm[0].textContent,
+                      cpm: cpm.textContent,
+                      acc: acc[0].textContent,
+                    }),
+                  });
+                } else if (shouldBeAdded) {
+                  fetch(`${backendURL}/api/user/pb`, {
+                    method: "DELETE",
+                    headers: {
+                      Authorization: "Bearer " + localStorage.getItem("token"),
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      timer: removedTimer,
+                      wpm: removedWpm,
+                      cpm: removedCpm,
+                      acc: removedAcc,
+                    }),
+                  });
+
+                  fetch(`${backendURL}/api/user/pb`, {
+                    method: "POST",
+                    headers: {
+                      Authorization: "Bearer " + localStorage.getItem("token"),
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      timer: `${selectedTime}s`,
+                      wpm: wpm[0].textContent,
+                      cpm: cpm.textContent,
+                      acc: acc[0].textContent,
+                    }),
+                  });
+                }
+              }
+            });
         }
 
         once = true;
@@ -115,6 +210,20 @@ const getUserStats = () => {
     })
       .then((res) => res.json())
       .then((data) => res(data.user.results));
+  });
+};
+
+const getUserPbs = () => {
+  return new Promise((res, req) => {
+    fetch(`${backendURL}/api/user/pb`, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => res(data));
   });
 };
 
@@ -191,7 +300,7 @@ signOut.addEventListener("click", () => {
 
 leaderboardBtn.addEventListener("click", () => {
   leaderboard.style.display = "flex";
-  overlay.style.display = "block";
+  overlay.style.display = "block"; 
 });
 
 settingsBtn.addEventListener("click", () => {
@@ -210,6 +319,29 @@ profileBtn.addEventListener("click", async () => {
     userStats.style.display = "flex";
     signOut.style.display = "block";
     document.querySelector("nav > ul").style.display = "none";
+
+    const userPbs = await getUserPbs();
+
+    userPbs.forEach((el) => {
+      const tableRow = document.createElement("tr");
+
+      const timer = document.createElement("td");
+      const wpm = document.createElement("td");
+      const cpm = document.createElement("td");
+      const acc = document.createElement("td");
+
+      timer.textContent = el.timer;
+      wpm.textContent = el.wpm;
+      cpm.textContent = el.cpm;
+      acc.textContent = el.acc;
+
+      tableRow.appendChild(timer);
+      tableRow.appendChild(wpm);
+      tableRow.appendChild(cpm);
+      tableRow.appendChild(acc);
+
+      document.querySelector("#user-pbs tbody").appendChild(tableRow);
+    });
 
     const userResults = await getUserStats();
 
@@ -231,7 +363,7 @@ profileBtn.addEventListener("click", async () => {
       tableRow.appendChild(acc);
       tableRow.appendChild(timer);
 
-      document.querySelector("#user-stats table tbody").prepend(tableRow);
+      document.querySelector("#all-results tbody").prepend(tableRow);
     });
   }
 });
@@ -329,64 +461,5 @@ document.addEventListener("keyup", (e) => {
 });
 
 logo.addEventListener("click", () => {
-  // restart();
   window.location.reload();
 });
-
-// document.addEventListener("keypress", (e) => {
-//   if (!keypressed) {
-//     setInterval(() => {
-//       if (time.textContent !== "0") {
-//         time.textContent = +time.textContent - 1;
-//         temp = false;
-//       } else {
-//         timeUp = true;
-
-//         if (!temp) {
-//           mainContent.style.display = "none";
-//           results.style.display = "flex";
-//           footer.style.display = "none";
-
-//           temp = true;
-//         }
-//       }
-//     }, 1000);
-//   }
-
-//   keypressed = true;
-
-//   if (!timeUp) {
-//     if (e.key === textArr[0]) {
-//       correctWords.push(textArr[0]);
-//       textArr.shift();
-
-//       if (correctWords[correctWords.length - 1] === " ") {
-//         wpm.forEach(
-//           (el) => (el.textContent = +el.textContent + 1 * (60 / +selectedTime))
-//         );
-
-//         textArr.push(`${words[Math.floor(Math.random() * words.length)]} `);
-//       }
-
-//       cpm.textContent = +cpm.textContent + 1;
-//     } else {
-//       wrong++;
-//     }
-
-//     if ((100 / +cpm.textContent) * (+cpm.textContent - wrong) >= 0) {
-//       acc.forEach(
-//         (el) =>
-//           (el.textContent = `${(
-//             (100 / +cpm.textContent) *
-//             (+cpm.textContent - wrong)
-//           ).toFixed(
-//             +el.textContent === 100 || +el.textContent === 0 ? 0 : 2
-//           )}%`)
-//       );
-//     } else {
-//       acc.forEach((el) => (el.textContent = "0%"));
-//     }
-
-//     text.textContent = textArr.join("");
-//   }
-// });
