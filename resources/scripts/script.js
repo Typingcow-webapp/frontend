@@ -28,6 +28,8 @@ const userStats = document.getElementById("user-stats");
 const username = document.getElementById("user-name");
 const signOut = document.getElementById("sign-out");
 
+const backendURL = "https://dry-thicket-18544.herokuapp.com";
+
 username.textContent = localStorage.getItem("username");
 
 userInput.focus();
@@ -56,7 +58,7 @@ const startTimer = () => {
       if (!once) {
         showResults();
 
-        fetch("http://localhost:3000/api/user/result", {
+        fetch(`${backendURL}/api/user/result`, {
           method: "POST",
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -79,7 +81,7 @@ const startTimer = () => {
 function formSubmit(event, method) {
   event.preventDefault();
 
-  const url = `http://localhost:3000/api/${method}?username=${event.target[0].value}&password=${event.target[1].value}`;
+  const url = `${backendURL}/api/${method}?username=${event.target[0].value}&password=${event.target[1].value}`;
 
   return new Promise((res, req) => {
     fetch(url, {
@@ -95,7 +97,7 @@ function formSubmit(event, method) {
 
 const getUserStats = () => {
   return new Promise((res, req) => {
-    fetch("http://localhost:3000/api/user/result", {
+    fetch(`${backendURL}/api/user/result`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -145,7 +147,7 @@ document.getElementById("login").addEventListener("submit", async (e) => {
   profile.style.display = "none";
   overlay.style.display = "none";
 
-  const url = "http://localhost:3000/api/user/profile";
+  const url = `${backendURL}/api/user/profile`;
   const token = await formSubmit(e, "login");
 
   fetch(url, {
@@ -165,7 +167,7 @@ document.getElementById("login").addEventListener("submit", async (e) => {
 });
 
 signOut.addEventListener("click", () => {
-  fetch("http://localhost:3000/api/logout", {
+  fetch(`${backendURL}/api/logout`, {
     method: "GET",
   });
 
