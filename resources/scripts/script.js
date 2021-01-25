@@ -58,19 +58,21 @@ const startTimer = () => {
       if (!once) {
         showResults();
 
-        fetch(`${backendURL}/api/user/result`, {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            wpm: wpm[0].textContent,
-            cpm: cpm.textContent,
-            acc: acc[0].textContent,
-            timer: `${selectedTime}s`,
-          }),
-        });
+        if (localStorage.getItem("authenticated") === "true") {
+          fetch(`${backendURL}/api/user/result`, {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              wpm: wpm[0].textContent,
+              cpm: cpm.textContent,
+              acc: acc[0].textContent,
+              timer: `${selectedTime}s`,
+            }),
+          });
+        }
 
         once = true;
       }
@@ -82,6 +84,13 @@ function formSubmit(event, method) {
   event.preventDefault();
 
   const url = `${backendURL}/api/${method}?username=${event.target[0].value}&password=${event.target[1].value}`;
+
+  if (event.target.id === "register") {
+    document.getElementById("login").children[1].focus();
+  }
+
+  event.target[0].value = null;
+  event.target[1].value = null;
 
   return new Promise((res, req) => {
     fetch(url, {
