@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./resources/images/favicon2.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./resources/css/reset.css">
+  <link rel="stylesheet" href="./resources/css/style.css">
+  <title>Typingcow</title>
+</head>
+
+<body>
+  <!-- <div class="gradient"></div> -->
+  <div class="overlay" id="overlay"></div>
+
+  <header>
+    <nav>
+      <div>
+        <h1 class="logo" id="logo">typingcow</h1>
+
+        <ul>
+          <!-- <li><i class="fas fa-keyboard"></i></li> -->
+          <li><i class="fas fa-users" id="leaderboardBtn"></i></li>
+          <li><a href="https://www.github.com/samyadel/typingcow" target="_blank"><i class="fas fa-code-branch"></i></a></li>
+          <li><i class="fas fa-cog" id="settingsBtn"></i></li>
+          <li><i class="fas fa-user" id="profileBtn"></i> <span id="user-name"></span></li>
+        </ul>
+      </div>
+
+      <ul>
+        <li><input type="radio" name="time" id="15" checked><label for="15">15</label></li>
+        <li><input type="radio" name="time" id="30"><label for="30">30</label></li>
+        <li><input type="radio" name="time" id="60"><label for="60">60</label></li>
+        <li><input type="radio" name="time" id="120"><label for="120">120</label></li>
+      </ul>
+
+      <button class="sign-out" id="sign-out"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+    </nav>
+  </header>
+
+  <main>
+    <header>
+      <div>
+        <div class="text">
+          <div>
+          <div class="capslock" id="capslock">
+            <p><i class="fas fa-lock"></i> Caps Lock</p>
+          </div>
+
+          <p id="text"></p>
+          </div>
+        </div>
+
+        <input type="text" id="user-input" class="user-input" data-lpignore="true">
+
+        <div class="keyboard">
+          <div class="wrapper">
+            <div class="keys">
+              <div type="button" value="Q" id="q">Q</div>
+              <div type="button" value="W" id="w">W</div>
+              <div type="button" value="E" id="e">E</div>
+              <div type="button" value="R" id="r">R</div>
+              <div type="button" value="T" id="t">T</div>
+              <div type="button" value="Y" id="y">Y</div>
+              <div type="button" value="U" id="u">U</div>
+              <div type="button" value="I" id="i">I</div>
+              <div type="button" value="O" id="o">O</div>
+              <div type="button" value="P" id="p">P</div>
+            </div>
+            <div class="keys">
+              <div type="button" value="A" id="a">A</div>
+              <div type="button" value="S" id="s">S</div>
+              <div type="button" value="D" id="d">D</div>
+              <div type="button" value="F" id="f">F</div>
+              <div type="button" value="G" id="g">G</div>
+              <div type="button" value="H" id="h">H</div>
+              <div type="button" value="J" id="j">J</div>
+              <div type="button" value="K" id="k">K</div>
+              <div type="button" value="L" id="l">L</div>
+            </div>
+            <div class="keys">
+              <div type="button" value="Z" id="z">Z</div>
+              <div type="button" value="X" id="x">X</div>
+              <div type="button" value="C" id="c">C</div>
+              <div type="button" value="V" id="v">V</div>
+              <div type="button" value="B" id="b">B</div>
+              <div type="button" value="N" id="n">N</div>
+              <div type="button" value="M" id="m">M</div>
+            </div>
+            <div class="keys">
+              <div type="button" value="SPACE" id=" ">SPACE</div>
+            </div>
+          </div>
+        </div>
+    </header>
+
+    <section class="results" id="results">
+      <div class="result">
+        <p>wpm</p>
+        <h2 class="wpm">0</h2>
+      </div>
+    
+      <div class="result">
+        <p>cpm</p>
+        <h2 id="cpm">0</h2>
+      </div>
+    
+      <div class="result">
+        <p>acc</p>
+        <h2 class="acc">0%</h2>
+      </div>
+    </section>
+
+    <section class="card" id="leaderboard">
+      <h2>Leaderboard Coming Soon!</h2>
+    </section>
+
+    <section class="card" id="settings">
+      <h2>Settings Coming Soon!</h2>
+    </section>
+
+    <section class="card profile" id="profile">
+      <form id="register">
+        <p>register</p>
+
+        <input type="text" id="username" placeholder="username">
+        <input type="password" id="password" placeholder="password">
+
+        <input type="submit" value="Sign Up">
+      </form>
+
+      <form id="login">
+        <p>login</p>
+
+        <input type="text" id="username" placeholder="username">
+        <input type="password" id="password" placeholder="password">
+
+        <input type="submit" value="Log In">
+      </form>
+    </section>
+
+    <section class="user-stats" id="user-stats">
+      <table>
+        <thead>
+          <tr>
+            <th>wpm</th>
+            <th>cpm</th>
+            <th>acc</th>
+            <th>time</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- <footer>
+    <ul>
+      <div>
+        <li><a href="https://www.github.com/samyadel" target="_blank"><i class="fas fa-heart"></i> Developed by Samy Adel</a></li>
+        <li><a href="#"><i class="fab fa-github"></i> Contribute on GitHub</a></li>
+        <li><a href="https://discord.gg/Yn9KbUF34x" target="_blank"><i class="fab fa-discord"></i> Join the Discord server</a></li>
+        <li><a href="#"><i class="fas fa-hand-holding-usd"></i> Support this project</a></li>
+      </div>
+    </ul>
+
+    <ul>
+      <div>
+        <li><a href="#"><i class="fas fa-palette"></i> Theme</a></li>
+        <li><a href="#"><i class="fas fa-user-shield"></i> Privacy Policy</a></li>
+      </div>
+    </ul>
+  </footer> -->
+
+  <footer>
+    <div class="stats" id="stats">
+      <div class="stat">
+        <div>
+          <h2 id="timer">15</h2>
+          <p>time</p>
+        </div>
+      </div>
+    
+      <div class="stat">
+        <div>
+          <h2 class="wpm">0</h2>
+          <p>wpm</p>
+        </div>
+      </div>
+    
+      <div class="stat">
+        <div>
+          <h2 class="acc">0%</h2>
+          <p>acc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/e02b0205d6.js" crossorigin="anonymous"></script>
+  <script src="./resources/scripts/script.js"></script>
+</body>
+</html>
