@@ -14,17 +14,11 @@ body {
   font-size: 1.6rem;
   background-color: rgb(36, 41, 51);
   font-family: "Roboto Mono", monospace;
-  /* color: rgb(236, 76, 86); */
   color: #af8750;
   user-select: none;
 }
 
 /***************NAVIGATION BAR***************/
-
-/* .gradient {
-  height: 0.5rem;
-  background: linear-gradient(270deg, #6b87e3 10%, #e041cc, #fc4b53 90%);
-} */
 
 nav {
   display: flex;
