@@ -42,6 +42,7 @@ let mistakes = 0;
 let numCharsWritten = 0;
 let wrong = false;
 let once = false;
+let clickedProfile = false;
 
 let correctWords = [];
 let incorrectWords = [];
@@ -300,7 +301,7 @@ signOut.addEventListener("click", () => {
 
 leaderboardBtn.addEventListener("click", () => {
   leaderboard.style.display = "flex";
-  overlay.style.display = "block"; 
+  overlay.style.display = "block";
 });
 
 settingsBtn.addEventListener("click", () => {
@@ -313,58 +314,62 @@ profileBtn.addEventListener("click", async () => {
     profile.style.display = "flex";
     overlay.style.display = "block";
   } else {
-    mainContent.style.display = "none";
-    results.style.display = "none";
-    footer.style.display = "none";
-    userStats.style.display = "flex";
-    signOut.style.display = "block";
-    document.querySelector("nav > ul").style.display = "none";
+    if (!clickedProfile) {
+      mainContent.style.display = "none";
+      results.style.display = "none";
+      footer.style.display = "none";
+      userStats.style.display = "flex";
+      signOut.style.display = "block";
+      document.querySelector("nav > ul").style.display = "none";
 
-    const userPbs = await getUserPbs();
+      const userPbs = await getUserPbs();
 
-    userPbs.forEach((el) => {
-      const tableRow = document.createElement("tr");
+      userPbs.forEach((el) => {
+        const tableRow = document.createElement("tr");
 
-      const timer = document.createElement("td");
-      const wpm = document.createElement("td");
-      const cpm = document.createElement("td");
-      const acc = document.createElement("td");
+        const timer = document.createElement("td");
+        const wpm = document.createElement("td");
+        const cpm = document.createElement("td");
+        const acc = document.createElement("td");
 
-      timer.textContent = el.timer;
-      wpm.textContent = el.wpm;
-      cpm.textContent = el.cpm;
-      acc.textContent = el.acc;
+        timer.textContent = el.timer;
+        wpm.textContent = el.wpm;
+        cpm.textContent = el.cpm;
+        acc.textContent = el.acc;
 
-      tableRow.appendChild(timer);
-      tableRow.appendChild(wpm);
-      tableRow.appendChild(cpm);
-      tableRow.appendChild(acc);
+        tableRow.appendChild(timer);
+        tableRow.appendChild(wpm);
+        tableRow.appendChild(cpm);
+        tableRow.appendChild(acc);
 
-      document.querySelector("#user-pbs tbody").appendChild(tableRow);
-    });
+        document.querySelector("#user-pbs tbody").appendChild(tableRow);
+      });
 
-    const userResults = await getUserStats();
+      const userResults = await getUserStats();
 
-    userResults.forEach((el) => {
-      const tableRow = document.createElement("tr");
+      userResults.forEach((el) => {
+        const tableRow = document.createElement("tr");
 
-      const wpm = document.createElement("td");
-      const cpm = document.createElement("td");
-      const acc = document.createElement("td");
-      const timer = document.createElement("td");
+        const wpm = document.createElement("td");
+        const cpm = document.createElement("td");
+        const acc = document.createElement("td");
+        const timer = document.createElement("td");
 
-      wpm.textContent = el.wpm;
-      cpm.textContent = el.cpm;
-      acc.textContent = el.acc;
-      timer.textContent = el.timer;
+        wpm.textContent = el.wpm;
+        cpm.textContent = el.cpm;
+        acc.textContent = el.acc;
+        timer.textContent = el.timer;
 
-      tableRow.appendChild(wpm);
-      tableRow.appendChild(cpm);
-      tableRow.appendChild(acc);
-      tableRow.appendChild(timer);
+        tableRow.appendChild(wpm);
+        tableRow.appendChild(cpm);
+        tableRow.appendChild(acc);
+        tableRow.appendChild(timer);
 
-      document.querySelector("#all-results tbody").prepend(tableRow);
-    });
+        document.querySelector("#all-results tbody").prepend(tableRow);
+      });
+
+      clickedProfile = true;
+    }
   }
 });
 
