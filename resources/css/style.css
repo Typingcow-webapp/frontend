@@ -18,11 +18,21 @@ body {
 
 /***************NAVIGATION BAR***************/
 
-nav {
+body > header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 90px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 1000px; */
+  max-width: 1000px;
+  width: 85%;
+  /* height: 90px; */
   /* padding: 0px 470px; */
 }
 
@@ -100,14 +110,15 @@ main header {
   height: 100%;
   text-align: center;
   position: relative;
-  display: flex;
 }
 
 main header > div {
   height: 600px;
   display: flex;
   flex-wrap: wrap;
-  width: 1000px;
+  /* width: 1000px; */
+  max-width: 1000px;
+  width: 85%;
   align-items: center;
   justify-content: center;
 }
@@ -166,7 +177,8 @@ main header > div {
 } */
 
 footer {
-  width: 500px;
+  max-width: 500px;
+  width: 95%;
   margin: 0 auto;
   background-color: rgb(27, 31, 38);
   padding: 20px;
@@ -221,12 +233,11 @@ footer a:hover {
 /***************KEYBOARD***************/
 
 .keyboard {
-  flex-basis: 100%;
+  width: 100%;
   font-family: "Roboto", sans-serif;
 }
 
 .wrapper {
-  min-width: 750px;
   max-width: 1000px;
   padding: 25px;
   border-radius: 10px;
@@ -240,7 +251,7 @@ footer a:hover {
 
 .wrapper .keys div {
   height: 50px;
-  min-width: 50px;
+  width: 50px;
   padding: 10px;
   background: #af8750;
   margin: 10px;
@@ -425,4 +436,108 @@ tbody tr:nth-child(odd) {
 
 .sign-out:hover {
   color: #af8750;
+}
+
+/***************MEDIA QUERIES***************/
+
+/* @media only screen and (max-width: 1055px) {
+  nav,
+  main header > div {
+    width: 800px;
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  nav,
+  main header > div {
+    width: 700px;
+  }
+
+  .wrapper .keys > div {
+    height: 48px;
+    width: 48px;
+    font-size: 18px;
+  }
+
+  .wrapper .keys div.pressed {
+    font-size: 17px;
+  }
+} */
+
+@media only screen and (max-width: 626px) {
+  /* nav {
+    display: block;
+  }
+
+  nav > div {
+    justify-content: center;
+  }
+
+  nav > ul {
+    text-align: center;
+  } */
+
+  nav > div {
+    display: block;
+  }
+
+  .logo {
+    margin-bottom: 15px;
+  }
+
+  nav > div ul {
+    text-align: left;
+  }
+
+  nav > div li {
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 585px) {
+  .keyboard {
+    display: none;
+  }
+}
+
+@media only screen and (max-height: 767px) {
+  .keyboard {
+    margin-bottom: 25px;
+  }
+}
+
+@media only screen and (max-height: 727px) {
+  .keyboard {
+    margin-bottom: 45px;
+  }
+}
+
+@media only screen and (max-height: 690px) {
+  .keyboard {
+    display: none;
+  }
+
+  main header > div {
+    height: 450px;
+  }
+}
+
+@media only screen and (max-height: 540px) {
+  main header > div {
+    height: 340px;
+  }
+}
+
+@media only screen and (max-height: 470px) {
+  main header > div {
+    height: 270px;
+  }
+}
+
+@media only screen and (max-height: 425px) {
+  main header > div {
+    height: 200px;
+  }
 }
