@@ -16,17 +16,20 @@
 
 <body>
   <div class="overlay" id="overlay"></div>
+  <div class="mobile-overlay" id="mobile-overlay"></div>
 
   <header>
     <nav>
       <div>
+        <input type="checkbox" id="checkbox" class="checkbox">
+        <label for="checkbox" class="hamburger"><i class="fas fa-bars"></i></label>
         <h1 class="logo" id="logo">typingcow</h1>
 
         <ul>
-          <li><i class="fas fa-users" id="leaderboardBtn"></i></li>
+          <li class="leaderboardBtn"><i class="fas fa-users"></i></li>
           <!-- <li><a href="https://www.github.com/samyadel/typingcow" target="_blank"><i class="fas fa-code-branch"></i></a></li> -->
-          <li><i class="fas fa-cog" id="settingsBtn"></i></li>
-          <li><i class="fas fa-user" id="profileBtn"></i> <span id="user-name"></span></li>
+          <li class="settingsBtn"><i class="fas fa-cog"></i></li>
+          <li class="profileBtn"><i class="fas fa-user" ></i> <span class="user-name"></span></li> 
         </ul>
       </div>
 
@@ -39,8 +42,16 @@
 
       <button class="sign-out" id="sign-out"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
     </nav>
-  </header>
 
+    <nav class="mobile-navigation" id="mobile-navigation">
+      <ul>
+        <li class="leaderboardBtn"><i class="fas fa-users"></i> Leaderboard</li>
+        <li class="settingsBtn"><i class="fas fa-cog"></i> Settings</li>
+        <li class="profileBtn"><i class="fas fa-user"></i> <span id="guest-text">Log in / register</span> <span class="user-name"></span></li>
+      </ul>
+    </nav>
+  </header>
+  
   <main>
     <header>
       <div>

@@ -13,23 +13,38 @@ const results = document.getElementById("results");
 const keys = [...document.querySelectorAll(".wrapper div")];
 const logo = document.getElementById("logo");
 const timeChoices = [...document.querySelectorAll("input[type='radio']")];
-const leaderboardBtn = document.getElementById("leaderboardBtn");
-const settingsBtn = document.getElementById("settingsBtn");
-const profileBtn = document.getElementById("profileBtn");
+// const leaderboardBtn = document.getElementById("leaderboardBtn");
+const leaderboardBtns = [...document.querySelectorAll(".leaderboardBtn")];
+// const settingsBtn = document.getElementById("settingsBtn");
+const settingsBtns = [...document.querySelectorAll(".settingsBtn")];
+// const profileBtn = document.getElementById("profileBtn");
+const profileBtns = [...document.querySelectorAll(".profileBtn")];
 const leaderboard = document.getElementById("leaderboard");
 const settings = document.getElementById("settings");
 const profile = document.getElementById("profile");
 const overlay = document.getElementById("overlay");
+const mobileOverlay = document.getElementById("mobile-overlay");
 const footer = document.querySelector("footer");
 const userInput = document.getElementById("user-input");
 const capslock = document.getElementById("capslock");
 const userStats = document.getElementById("user-stats");
-const username = document.getElementById("user-name");
+const username = document.querySelectorAll(".user-name");
 const signOut = document.getElementById("sign-out");
+const hamburgerMenuCheckbox = document.getElementById("checkbox");
+const mobileNav = document.getElementById("mobile-navigation");
+const guestText = document.getElementById("guest-text");
+
+console.log(leaderboardBtns);
 
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
 
-username.textContent = localStorage.getItem("username");
+username.forEach((el) => {
+  el.textContent = localStorage.getItem("username");
+});
+
+if (localStorage.getItem("authenticated") === "true") {
+  guestText.textContent = null;
+}
 
 userInput.focus();
 
@@ -43,10 +58,6 @@ let numCharsWritten = 0;
 let wrong = false;
 let once = false;
 let clickedProfile = false;
-
-let correctWords = [];
-let incorrectWords = [];
-let temp = false;
 
 /***************FUNCTIONS***************/
 
@@ -82,7 +93,6 @@ const startTimer = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               if (data.length === 0) {
                 fetch(`${backendURL}/api/user/pb`, {
                   method: "POST",
@@ -258,6 +268,11 @@ displayRandomQuote();
 
 /***************EVENT LISTENERS***************/
 
+hamburgerMenuCheckbox.addEventListener("change", () => {
+  mobileNav.classList.toggle("onscreen");
+  mobileOverlay.classList.toggle("visible");
+});
+
 document
   .getElementById("register")
   .addEventListener("submit", (e) => formSubmit(e, "signup"));
@@ -281,7 +296,10 @@ document.getElementById("login").addEventListener("submit", async (e) => {
       localStorage.setItem("username", data.user.username);
       localStorage.setItem("authenticated", "true");
 
-      username.textContent = localStorage.getItem("username");
+      username.forEach((el) => {
+        el.textContent = localStorage.getItem("username");
+      });
+      guestText.textContent = "";
     });
 });
 
@@ -299,78 +317,109 @@ signOut.addEventListener("click", () => {
   window.location.reload();
 });
 
-leaderboardBtn.addEventListener("click", () => {
-  leaderboard.style.display = "flex";
-  overlay.style.display = "block";
-});
-
-settingsBtn.addEventListener("click", () => {
-  settings.style.display = "flex";
-  overlay.style.display = "block";
-});
-
-profileBtn.addEventListener("click", async () => {
-  if (localStorage.getItem("authenticated") !== "true") {
-    profile.style.display = "flex";
-    overlay.style.display = "block";
-  } else {
-    if (!clickedProfile) {
-      mainContent.style.display = "none";
-      results.style.display = "none";
-      footer.style.display = "none";
-      userStats.style.display = "flex";
-      signOut.style.display = "block";
-      document.querySelector("nav > ul").style.display = "none";
-
-      const userPbs = await getUserPbs();
-
-      userPbs.forEach((el) => {
-        const tableRow = document.createElement("tr");
-
-        const timer = document.createElement("td");
-        const wpm = document.createElement("td");
-        const cpm = document.createElement("td");
-        const acc = document.createElement("td");
-
-        timer.textContent = el.timer;
-        wpm.textContent = el.wpm;
-        cpm.textContent = el.cpm;
-        acc.textContent = el.acc;
-
-        tableRow.appendChild(timer);
-        tableRow.appendChild(wpm);
-        tableRow.appendChild(cpm);
-        tableRow.appendChild(acc);
-
-        document.querySelector("#user-pbs tbody").appendChild(tableRow);
-      });
-
-      const userResults = await getUserStats();
-
-      userResults.forEach((el) => {
-        const tableRow = document.createElement("tr");
-
-        const wpm = document.createElement("td");
-        const cpm = document.createElement("td");
-        const acc = document.createElement("td");
-        const timer = document.createElement("td");
-
-        wpm.textContent = el.wpm;
-        cpm.textContent = el.cpm;
-        acc.textContent = el.acc;
-        timer.textContent = el.timer;
-
-        tableRow.appendChild(wpm);
-        tableRow.appendChild(cpm);
-        tableRow.appendChild(acc);
-        tableRow.appendChild(timer);
-
-        document.querySelector("#all-results tbody").prepend(tableRow);
-      });
-
-      clickedProfile = true;
+leaderboardBtns.forEach((el) => {
+  el.addEventListener("click", (e) => {
+    if (
+      e.target.parentElement.parentElement === mobileNav ||
+      e.target.parentElement.parentElement.parentElement === mobileNav
+    ) {
+      mobileNav.classList.remove("onscreen");
+      mobileOverlay.classList.remove("visible");
     }
-  }
+
+    leaderboard.style.display = "flex";
+    overlay.style.display = "block";
+    console.log("y");
+  });
+});
+
+settingsBtns.forEach((el) => {
+  el.addEventListener("click", (e) => {
+    if (
+      e.target.parentElement.parentElement === mobileNav ||
+      e.target.parentElement.parentElement.parentElement === mobileNav
+    ) {
+      mobileNav.classList.remove("onscreen");
+      mobileOverlay.classList.remove("visible");
+    }
+
+    settings.style.display = "flex";
+    overlay.style.display = "block";
+  });
+});
+
+profileBtns.forEach((el) => {
+  el.addEventListener("click", async (e) => {
+    if (
+      e.target.parentElement.parentElement === mobileNav ||
+      e.target.parentElement.parentElement.parentElement === mobileNav
+    ) {
+      mobileNav.classList.remove("onscreen");
+      mobileOverlay.classList.remove("visible");
+    }
+
+    if (localStorage.getItem("authenticated") !== "true") {
+      profile.style.display = "flex";
+      overlay.style.display = "block";
+    } else {
+      if (!clickedProfile) {
+        mainContent.style.display = "none";
+        results.style.display = "none";
+        footer.style.display = "none";
+        userStats.style.display = "flex";
+        signOut.style.display = "block";
+        document.querySelector("nav > ul").style.display = "none";
+
+        const userPbs = await getUserPbs();
+
+        userPbs.forEach((el) => {
+          const tableRow = document.createElement("tr");
+
+          const timer = document.createElement("td");
+          const wpm = document.createElement("td");
+          const cpm = document.createElement("td");
+          const acc = document.createElement("td");
+
+          timer.textContent = el.timer;
+          wpm.textContent = el.wpm;
+          cpm.textContent = el.cpm;
+          acc.textContent = el.acc;
+
+          tableRow.appendChild(timer);
+          tableRow.appendChild(wpm);
+          tableRow.appendChild(cpm);
+          tableRow.appendChild(acc);
+
+          document.querySelector("#user-pbs tbody").appendChild(tableRow);
+        });
+
+        const userResults = await getUserStats();
+
+        userResults.forEach((el) => {
+          const tableRow = document.createElement("tr");
+
+          const wpm = document.createElement("td");
+          const cpm = document.createElement("td");
+          const acc = document.createElement("td");
+          const timer = document.createElement("td");
+
+          wpm.textContent = el.wpm;
+          cpm.textContent = el.cpm;
+          acc.textContent = el.acc;
+          timer.textContent = el.timer;
+
+          tableRow.appendChild(wpm);
+          tableRow.appendChild(cpm);
+          tableRow.appendChild(acc);
+          tableRow.appendChild(timer);
+
+          document.querySelector("#all-results tbody").prepend(tableRow);
+        });
+
+        clickedProfile = true;
+      }
+    }
+  });
 });
 
 overlay.addEventListener("click", () => {

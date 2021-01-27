@@ -14,6 +14,8 @@ body {
   font-size: 1.6rem;
   font-family: "Roboto Mono", monospace;
   user-select: none;
+  height: 100vh;
+  width: 100vw;
 }
 
 /***************NAVIGATION BAR***************/
@@ -29,11 +31,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* width: 1000px; */
   max-width: 1000px;
   width: 85%;
-  /* height: 90px; */
-  /* padding: 0px 470px; */
 }
 
 nav div {
@@ -275,8 +274,9 @@ footer a:hover {
 /***************LEADERBOARD***************/
 
 .card {
-  height: 700px;
-  width: 1500px;
+  height: 70vh;
+  /* width: 1500px; */
+  width: 70%;
   background-color: rgb(27, 31, 38);
   position: absolute;
   z-index: 2;
@@ -293,13 +293,27 @@ footer a:hover {
   display: none;
 }
 
-.overlay {
+.overlay,
+.mobile-overlay {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   z-index: 1;
+}
+
+.overlay {
   display: none;
+}
+
+.mobile-overlay {
+  display: none;
+  /* opacity: 0; */
+  transition: opacity 0.8s;
+}
+
+.mobile-overlay.visible {
+  display: block;
 }
 
 .user-input {
@@ -346,6 +360,7 @@ footer a:hover {
 .profile {
   justify-content: space-evenly;
   text-align: left;
+  flex-wrap: wrap;
 }
 
 form p {
@@ -438,51 +453,79 @@ tbody tr:nth-child(odd) {
   color: #af8750;
 }
 
-/***************MEDIA QUERIES***************/
-
-/* @media only screen and (max-width: 1055px) {
-  nav,
-  main header > div {
-    width: 800px;
-  }
+.checkbox {
+  opacity: 0;
+  position: absolute;
 }
 
-@media only screen and (max-width: 870px) {
-  nav,
-  main header > div {
-    width: 700px;
-  }
+.checkbox:checked + .hamburger {
+  transform: rotateZ(360deg);
+}
 
-  .wrapper .keys > div {
-    height: 48px;
-    width: 48px;
-    font-size: 18px;
-  }
+.mobile-navigation {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 200px;
+  position: absolute;
+  background-color: rgb(27, 31, 38);
+  right: -200px;
+  /* display: none; */
+  top: 0;
+  z-index: 1;
+  transition: right 0.8s;
+  display: none;
+}
 
-  .wrapper .keys div.pressed {
-    font-size: 17px;
-  }
-} */
+.mobile-navigation.onscreen {
+  right: 0;
+  display: block;
+}
 
-@media only screen and (max-width: 626px) {
-  /* nav {
-    display: block;
-  }
+.hamburger {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.8s;
+  display: none;
+}
 
-  nav > div {
-    justify-content: center;
-  }
+.hamburger i {
+  color: #fff;
+  font-size: 20px;
+}
 
-  nav > ul {
-    text-align: center;
-  } */
+.hamburger i:hover {
+  color: #fff;
+}
 
-  nav > div {
-    display: block;
+.mobile-navigation ul {
+  padding-left: 15px;
+  /* background: red; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.mobile-navigation li {
+  display: block;
+  /* border-bottom: 1px solid #fff; */
+}
+
+/***************MEDIA QUERIES***************/
+
+@media only screen and (max-width: 670px) {
+  nav > div ul {
+    display: none;
   }
 
   .logo {
-    margin-bottom: 15px;
+    margin: 0;
   }
 
   nav > div ul {
@@ -494,11 +537,33 @@ tbody tr:nth-child(odd) {
     margin-left: 5px;
     margin-right: 10px;
   }
+
+  .hamburger {
+    display: block;
+  }
+
+  .result p {
+    font-size: 25px;
+  }
+
+  .result h2 {
+    font-size: 55px;
+  }
 }
 
 @media only screen and (max-width: 585px) {
   .keyboard {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 384px) {
+  nav {
+    display: block;
+  }
+
+  .logo {
+    margin-bottom: 10px;
   }
 }
 
@@ -539,5 +604,11 @@ tbody tr:nth-child(odd) {
 @media only screen and (max-height: 425px) {
   main header > div {
     height: 200px;
+  }
+}
+
+@media only screen and (max-height: 425px) {
+  footer {
+    display: none;
   }
 }
