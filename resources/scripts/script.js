@@ -34,8 +34,6 @@ const hamburgerMenuCheckbox = document.getElementById("checkbox");
 const mobileNav = document.getElementById("mobile-navigation");
 const guestText = document.getElementById("guest-text");
 
-console.log(leaderboardBtns);
-
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
 
 username.forEach((el) => {
@@ -329,7 +327,6 @@ leaderboardBtns.forEach((el) => {
 
     leaderboard.style.display = "flex";
     overlay.style.display = "block";
-    console.log("y");
   });
 });
 
