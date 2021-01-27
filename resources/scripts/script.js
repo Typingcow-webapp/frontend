@@ -243,7 +243,12 @@ const getRandomQuote = () => {
 };
 
 const displayRandomQuote = async () => {
-  const quote = await getRandomQuote();
+  let quote = await getRandomQuote();
+
+  while (quote.split("").length <= 280 === false) {
+    quote = await getRandomQuote();
+  }
+
   userInput.value = null;
   text.textContent = "";
 
@@ -437,23 +442,30 @@ userInput.addEventListener("input", (e) => {
   const quoteArr = text.querySelectorAll("span");
   const userInputArr = userInput.value.split("");
 
-  let allCorrect = true;
   let once = false;
   let finished = false;
 
   numCharsWritten++;
 
   quoteArr.forEach((char, index, arr) => {
+    if (
+      userInputArr[index] !== char.textContent &&
+      userInputArr[index] != null &&
+      userInputArr[index + 1] == null
+    ) {
+      mistakes++;
+    }
+
     if (userInputArr[index] == null) {
       char.classList.remove("correct");
       char.classList.remove("incorrect");
-      allCorrect = false;
     } else if (userInputArr[index] === char.textContent) {
       char.classList.add("correct");
       char.classList.remove("incorrect");
 
       if (!once) {
         cpm.textContent = +cpm.textContent + 1 * (60 / +selectedTime);
+
         if (e.data === " ") {
           wpm.forEach((el) => {
             el.textContent = +el.textContent + 1 * (60 / +selectedTime);
@@ -465,8 +477,6 @@ userInput.addEventListener("input", (e) => {
     } else {
       char.classList.add("incorrect");
       char.classList.remove("correct");
-      allCorrect = false;
-      mistakes++;
     }
 
     if (userInputArr[arr.length - 1] != null) finished = true;
@@ -480,13 +490,16 @@ userInput.addEventListener("input", (e) => {
 
   if (finished) displayRandomQuote();
 
-  acc.forEach(
-    (el) =>
-      (el.textContent = `${(
+  acc.forEach((el) => {
+    if ((numCharsWritten - mistakes) * (100 / numCharsWritten) < 0) {
+      el.textContent = "0%";
+    } else {
+      el.textContent = `${(
         (numCharsWritten - mistakes) *
         (100 / numCharsWritten)
-      ).toFixed(2)}%`)
-  );
+      ).toFixed(2)}%`;
+    }
+  });
 });
 
 document.addEventListener("keydown", (e) => {
