@@ -1,6 +1,7 @@
 /***************DOM SELECTORS***************/
 
-const RANDOM_QUOTE_API_URL = "https://api.quotable.io/random";
+const RANDOM_QUOTE_API_URL =
+  "https://api.quotable.io/random?minLength=85&maxLength=185";
 const mainContent = document.querySelector("main header");
 const time = document.querySelector("#timer");
 const text = document.getElementById("text");
@@ -13,11 +14,8 @@ const results = document.getElementById("results");
 const keys = [...document.querySelectorAll(".wrapper div")];
 const logo = document.getElementById("logo");
 const timeChoices = [...document.querySelectorAll("input[type='radio']")];
-// const leaderboardBtn = document.getElementById("leaderboardBtn");
 const leaderboardBtns = [...document.querySelectorAll(".leaderboardBtn")];
-// const settingsBtn = document.getElementById("settingsBtn");
 const settingsBtns = [...document.querySelectorAll(".settingsBtn")];
-// const profileBtn = document.getElementById("profileBtn");
 const profileBtns = [...document.querySelectorAll(".profileBtn")];
 const leaderboard = document.getElementById("leaderboard");
 const settings = document.getElementById("settings");
