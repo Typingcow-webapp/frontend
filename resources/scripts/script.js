@@ -239,8 +239,7 @@ const getUserPbs = () => {
 const getRandomQuote = () => {
   return fetch(RANDOM_QUOTE_API_URL)
     .then((response) => response.json())
-    .then((data) => data.content)
-    .catch(() => "Text failed loading. Please click CTRL + F5");
+    .then((data) => data.content);
 };
 
 const displayRandomQuote = async () => {
