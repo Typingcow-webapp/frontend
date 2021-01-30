@@ -494,6 +494,10 @@ body.light li i:hover {
   color: #dfd8d6;
 }
 
+body.light .mobile-navigation {
+  background-color: #dfd8d6;
+}
+
 body.light .text {
   color: rgb(22, 22, 22);
 }
@@ -560,6 +564,10 @@ body.dark .time {
 
 body.dark li i:hover {
   color: #af8750;
+}
+
+body.dark .mobile-navigation {
+  background-color: rgb(27, 31, 38);
 }
 
 body.dark .text {
