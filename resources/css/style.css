@@ -9,30 +9,69 @@ html {
 }
 
 body {
-  background-color: rgb(36, 41, 51);
-  color: #af8750;
+  background-color: #efe8e6;
+  color: #26243d;
   font-size: 1.6rem;
   font-family: "Roboto Mono", monospace;
+  /* font-family: "Merriweather", serif; */
   user-select: none;
   height: 100vh;
   width: 100vw;
+  transition: background 0.3s;
 }
 
 /***************NAVIGATION BAR***************/
+
+.darkmode-checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.darkmode-checkbox:checked + label .ball {
+  transform: translateX(23px);
+}
+
+.label {
+  display: flex;
+  border: 1px solid #000;
+  height: 26px;
+  width: 50px;
+  background-color: #000;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+}
+
+.ball {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+body.dark {
+  background: #292c35;
+}
 
 body > header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   height: 90px;
+  padding-top: 30px;
 }
 
-nav {
+body > header > nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 1000px;
   width: 85%;
+  /* box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4); */
+  /* padding: 30px; */
+  border-radius: 50px;
 }
 
 nav div {
@@ -43,12 +82,14 @@ nav div {
 .logo {
   cursor: pointer;
   font-family: "Roboto Mono", monospace;
+  /* font-weight: 500; */
   font-size: 35px;
   margin-right: 10px;
 }
 
-nav div li {
+nav li {
   margin: 0px 15px;
+  /* font-family: "Montserrat", sans-serif; */
 }
 
 nav li {
@@ -79,7 +120,7 @@ input[type="radio"]:checked + label {
 
 nav i:hover,
 nav > ul > li:hover {
-  color: #af8750;
+  color: #dfd8d6;
 }
 
 label {
@@ -94,6 +135,14 @@ i {
 nav li span {
   font-size: 14px;
   color: rgb(89, 97, 114);
+}
+
+.time {
+  outline: none;
+  background-color: #dfd8d6;
+  padding: 8px 13px;
+  border-radius: 10px;
+  border: none;
 }
 
 /***************MAIN CONTENT***************/
@@ -130,17 +179,13 @@ main header > div {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(89, 97, 114);
+  /* color: rgb(89, 97, 114); */
 }
 
 .text p {
   font-size: 24px;
   font-family: "Roboto Mono", monospace;
   line-height: 1.6;
-}
-
-.correct {
-  color: #fff;
 }
 
 .stats {
@@ -166,46 +211,17 @@ main header > div {
 
 /***************FOOTER***************/
 
-/* footer {
-  height: 150px;
-  display: flex;
-  justify-content: space-between;
-  color: rgb(89, 97, 114);
-  font-size: 13px;
-  padding: 0px 470px;
-} */
-
 footer {
   max-width: 500px;
   width: 95%;
   margin: 0 auto;
-  background-color: rgb(27, 31, 38);
+  background-color: #dfd8d6;
   padding: 20px;
   border-radius: 20px;
   height: 78px;
   display: flex;
   align-items: center;
 }
-
-/* footer ul {
-  display: flex;
-  align-items: center;
-}
-
-footer li {
-  display: block;
-  margin-bottom: 8px;
-}
-
-footer a {
-  color: rgb(89, 97, 114);
-  text-decoration: none;
-  transition: color 0.2s ease 0s;
-}
-
-footer a:hover {
-  color: rgb(236, 76, 86);
-} */
 
 /***************RESULTS***************/
 
@@ -240,7 +256,7 @@ footer a:hover {
   max-width: 1000px;
   padding: 25px;
   border-radius: 10px;
-  background: rgb(43, 49, 59);
+  background: #dfd8d6;
 }
 
 .wrapper .keys {
@@ -252,19 +268,19 @@ footer a:hover {
   height: 50px;
   width: 50px;
   padding: 10px;
-  background: #af8750;
+  background: #efefee;
   margin: 10px;
-  color: #fff;
   font-size: 20px;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
 }
 
 .wrapper .keys div.pressed {
   font-size: 19px;
-  background-color: rgb(27, 31, 38);
+  background-color: #e4e4e4;
 }
 
 .wrapper .keys div[value="SPACE"] {
@@ -277,7 +293,7 @@ footer a:hover {
   height: 70vh;
   /* width: 1500px; */
   width: 70%;
-  background-color: rgb(27, 31, 38);
+  background-color: #dfd8d6;
   position: absolute;
   z-index: 2;
   /* top: 50px; */
@@ -319,28 +335,28 @@ footer a:hover {
 .user-input {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #dfd8d6;
   width: 100%;
   outline: none;
   font-size: 30px;
-  color: #af8750;
+  color: rgb(22, 22, 22);
   text-align: center;
   font-family: "Roboto Mono", monospace;
 }
 
 .correct {
-  color: #fff;
+  color: #dfd8d6;
 }
 
 .incorrect {
-  color: #af8750;
+  color: rgb(255, 85, 85);
   text-decoration: underline;
 }
 
 .capslock {
   height: 50px;
   width: 150px;
-  background-color: #af8750;
+  background-color: rgb(22, 22, 22);
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -431,11 +447,11 @@ tr {
 }
 
 td {
-  color: #fff;
+  color: rgb(22, 22, 22);
 }
 
 tbody tr:nth-child(odd) {
-  background-color: rgb(27, 31, 38);
+  background-color: #dfd8d6;
 }
 
 .sign-out {
@@ -468,13 +484,13 @@ tbody tr:nth-child(odd) {
   height: 100vh;
   width: 200px;
   position: absolute;
-  background-color: rgb(27, 31, 38);
+  background-color: #dfd8d6;
   right: -200px;
-  /* display: none; */
   top: 0;
   z-index: 1;
   transition: right 0.8s;
   display: none;
+  border-radius: 0px;
 }
 
 .mobile-navigation.onscreen {
@@ -495,7 +511,7 @@ tbody tr:nth-child(odd) {
 }
 
 .hamburger i {
-  color: #fff;
+  color: rgb(22, 22, 22);
   font-size: 20px;
 }
 
@@ -514,18 +530,19 @@ tbody tr:nth-child(odd) {
 
 .mobile-navigation li {
   display: block;
-  /* border-bottom: 1px solid #fff; */
 }
 
 /***************MEDIA QUERIES***************/
 
 @media only screen and (max-width: 670px) {
-  nav > div ul {
+  nav > ul {
     display: none;
   }
 
   .logo {
     margin: 0;
+    display: inline-block;
+    margin-bottom: 10px;
   }
 
   nav > div ul {
@@ -539,7 +556,7 @@ tbody tr:nth-child(odd) {
   }
 
   .hamburger {
-    display: block;
+    display: inline-block;
   }
 
   .result p {
@@ -549,21 +566,15 @@ tbody tr:nth-child(odd) {
   .result h2 {
     font-size: 55px;
   }
+
+  nav > div {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 585px) {
   .keyboard {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 384px) {
-  nav {
-    display: block;
-  }
-
-  .logo {
-    margin-bottom: 10px;
   }
 }
 

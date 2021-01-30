@@ -13,7 +13,8 @@
   <script data-ad-client="ca-pub-3001013065990840" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
   <link rel="icon" type="image/ico" href="./resources/images/favicon.ico" />
   <link rel="stylesheet" href="./resources/css/reset.css">
   <link rel="stylesheet" href="./resources/css/style.css">
@@ -31,20 +32,33 @@
         <label for="checkbox" class="hamburger"><i class="fas fa-bars"></i></label>
         <h1 class="logo" id="logo">typingcow</h1>
 
-        <ul>
-          <li class="leaderboardBtn"><i class="fas fa-users"></i></li>
-          <li><a href="https://discord.gg/3ytxmYcF3M" target="_blank"><i class="fab fa-discord"></i></a></li>
-          <!-- <li><a href="https://www.github.com/samyadel/typingcow" target="_blank"><i class="fas fa-code-branch"></i></a></li> -->
-          <li class="settingsBtn"><i class="fas fa-cog"></i></li>
-          <li class="profileBtn"><i class="fas fa-user" ></i> <span class="user-name"></span></li> 
-        </ul>
+        <!-- <input type="checkbox" class="darkmode-checkbox" id="darkmode-checkbox">
+        
+        <label for="darkmode-checkbox" class="label">
+          <div class="ball"></div>
+        </label> -->
+
+        <select id="time" class="time">
+          <option value="15">15 seconds</option>
+          <option value="30">30 seconds</option>
+          <option value="60">60 seconds</option>
+          <option value="120">120 seconds</option>
+        </select>
       </div>
 
-      <ul>
+      <!-- <ul>
         <li><input type="radio" name="time" id="15" checked><label for="15">15</label></li>
         <li><input type="radio" name="time" id="30"><label for="30">30</label></li>
         <li><input type="radio" name="time" id="60"><label for="60">60</label></li>
         <li><input type="radio" name="time" id="120"><label for="120">120</label></li>
+      </ul> -->
+
+      <ul>
+        <li class="leaderboardBtn"><i class="fas fa-users"></i></li>
+        <li><a href="https://discord.gg/3ytxmYcF3M" target="_blank"><i class="fab fa-discord"></i></a></li>
+        <!-- <li><a href="https://www.github.com/samyadel/typingcow" target="_blank"><i class="fas fa-code-branch"></i></a></li> -->
+        <li class="settingsBtn"><i class="fas fa-cog"></i></li>
+        <li class="profileBtn"><i class="fas fa-user"></i> <span class="user-name"></span></li>
       </ul>
 
       <button class="sign-out" id="sign-out"><i class="fas fa-sign-out-alt"></i> Sign Out</button>

@@ -13,7 +13,8 @@ const acc = [...document.querySelectorAll(".acc")];
 const results = document.getElementById("results");
 const keys = [...document.querySelectorAll(".wrapper div")];
 const logo = document.getElementById("logo");
-const timeChoices = [...document.querySelectorAll("input[type='radio']")];
+// const timeChoices = [...document.querySelectorAll("input[type='radio']")];
+const timeChoice = document.getElementById("time");
 const leaderboardBtns = [...document.querySelectorAll(".leaderboardBtn")];
 const settingsBtns = [...document.querySelectorAll(".settingsBtn")];
 const profileBtns = [...document.querySelectorAll(".profileBtn")];
@@ -31,6 +32,7 @@ const signOut = document.getElementById("sign-out");
 const hamburgerMenuCheckbox = document.getElementById("checkbox");
 const mobileNav = document.getElementById("mobile-navigation");
 const guestText = document.getElementById("guest-text");
+const darkModeCheckbox = document.getElementById("darkmode-checkbox");
 
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
 
@@ -237,15 +239,14 @@ const getUserPbs = () => {
 const getRandomQuote = () => {
   return fetch(RANDOM_QUOTE_API_URL)
     .then((response) => response.json())
-    .then((data) => data.content);
+    .then((data) => data.content)
+    .catch(() => {
+      data.content = "Text failed loading. Please click CTRL + F5";
+    });
 };
 
 const displayRandomQuote = async () => {
-  let quote = await getRandomQuote();
-
-  while (quote.split("").length <= 280 === false) {
-    quote = await getRandomQuote();
-  }
+  const quote = await getRandomQuote();
 
   userInput.value = null;
   text.textContent = "";
@@ -269,9 +270,18 @@ displayRandomQuote();
 
 /***************EVENT LISTENERS***************/
 
+// darkModeCheckbox.addEventListener("change", () => {
+//   document.body.classList.toggle("dark");
+// });
+
 hamburgerMenuCheckbox.addEventListener("change", () => {
   mobileNav.classList.toggle("onscreen");
   mobileOverlay.classList.toggle("visible");
+});
+
+timeChoice.addEventListener("change", (e) => {
+  selectedTime = +timeChoice.options[timeChoice.selectedIndex].value;
+  time.textContent = selectedTime;
 });
 
 document
@@ -429,14 +439,16 @@ overlay.addEventListener("click", () => {
   overlay.style.display = "none";
 });
 
-timeChoices.forEach((choice) => {
-  choice.addEventListener("change", () => {
-    time.textContent = choice.id;
-    selectedTime = choice.id;
-  });
-});
+// timeChoices.forEach((choice) => {
+//   choice.addEventListener("change", () => {
+//     time.textContent = choice.id;
+//     selectedTime = choice.id;
+//   });
+// });
 
 userInput.addEventListener("input", (e) => {
+  timeChoice.setAttribute("disabled", "true");
+
   const quoteArr = text.querySelectorAll("span");
   const userInputArr = userInput.value.split("");
 
