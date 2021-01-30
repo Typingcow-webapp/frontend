@@ -9,11 +9,8 @@ html {
 }
 
 body {
-  background-color: #efe8e6;
-  color: #26243d;
   font-size: 1.6rem;
   font-family: "Roboto Mono", monospace;
-  /* font-family: "Merriweather", serif; */
   user-select: none;
   height: 100vh;
   width: 100vw;
@@ -21,39 +18,6 @@ body {
 }
 
 /***************NAVIGATION BAR***************/
-
-.darkmode-checkbox {
-  opacity: 0;
-  position: absolute;
-}
-
-.darkmode-checkbox:checked + label .ball {
-  transform: translateX(23px);
-}
-
-.label {
-  display: flex;
-  border: 1px solid #000;
-  height: 26px;
-  width: 50px;
-  background-color: #000;
-  border-radius: 50px;
-  position: relative;
-  cursor: pointer;
-}
-
-.ball {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background-color: #fff;
-  border-radius: 50%;
-  transition: transform 0.3s;
-}
-
-body.dark {
-  background: #292c35;
-}
 
 body > header {
   display: flex;
@@ -69,8 +33,6 @@ body > header > nav {
   align-items: center;
   max-width: 1000px;
   width: 85%;
-  /* box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.4); */
-  /* padding: 30px; */
   border-radius: 50px;
 }
 
@@ -82,14 +44,12 @@ nav div {
 .logo {
   cursor: pointer;
   font-family: "Roboto Mono", monospace;
-  /* font-weight: 500; */
   font-size: 35px;
   margin-right: 10px;
 }
 
 nav li {
   margin: 0px 15px;
-  /* font-family: "Montserrat", sans-serif; */
 }
 
 nav li {
@@ -108,21 +68,6 @@ nav li {
   cursor: pointer;
 }
 
-input[type="radio"] {
-  opacity: 0;
-  position: absolute;
-  z-index: -100;
-}
-
-input[type="radio"]:checked + label {
-  color: #af8750;
-}
-
-nav i:hover,
-nav > ul > li:hover {
-  color: #dfd8d6;
-}
-
 label {
   cursor: pointer;
 }
@@ -139,7 +84,6 @@ nav li span {
 
 .time {
   outline: none;
-  background-color: #dfd8d6;
   padding: 8px 13px;
   border-radius: 10px;
   border: none;
@@ -164,7 +108,6 @@ main header > div {
   height: 600px;
   display: flex;
   flex-wrap: wrap;
-  /* width: 1000px; */
   max-width: 1000px;
   width: 85%;
   align-items: center;
@@ -179,7 +122,6 @@ main header > div {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* color: rgb(89, 97, 114); */
 }
 
 .text p {
@@ -215,7 +157,6 @@ footer {
   max-width: 500px;
   width: 95%;
   margin: 0 auto;
-  background-color: #dfd8d6;
   padding: 20px;
   border-radius: 20px;
   height: 78px;
@@ -256,7 +197,6 @@ footer {
   max-width: 1000px;
   padding: 25px;
   border-radius: 10px;
-  background: #dfd8d6;
 }
 
 .wrapper .keys {
@@ -268,7 +208,6 @@ footer {
   height: 50px;
   width: 50px;
   padding: 10px;
-  background: #efefee;
   margin: 10px;
   font-size: 20px;
   border-radius: 5px;
@@ -280,7 +219,6 @@ footer {
 
 .wrapper .keys div.pressed {
   font-size: 19px;
-  background-color: #e4e4e4;
 }
 
 .wrapper .keys div[value="SPACE"] {
@@ -291,12 +229,9 @@ footer {
 
 .card {
   height: 70vh;
-  /* width: 1500px; */
   width: 70%;
-  background-color: #dfd8d6;
   position: absolute;
   z-index: 2;
-  /* top: 50px; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -307,6 +242,44 @@ footer {
   text-align: center;
   border-radius: 20px;
   display: none;
+}
+
+.settings {
+  justify-content: left;
+  align-items: flex-start;
+  padding: 100px;
+  text-align: left;
+}
+
+.settings h2 {
+  opacity: 0.7;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.themes input {
+  opacity: 0;
+  position: absolute;
+}
+
+.themes label {
+  font-size: 20px;
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themes label[for="light"] {
+  background-color: #efe8e6;
+  color: rgb(22, 22, 22);
+}
+
+.themes label[for="dark"] {
+  background-color: rgb(22, 22, 22);
+  color: #af8750;
 }
 
 .overlay,
@@ -324,7 +297,6 @@ footer {
 
 .mobile-overlay {
   display: none;
-  /* opacity: 0; */
   transition: opacity 0.8s;
 }
 
@@ -335,17 +307,13 @@ footer {
 .user-input {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #dfd8d6;
+  border-bottom: 1px solid;
   width: 100%;
   outline: none;
   font-size: 30px;
   color: rgb(22, 22, 22);
   text-align: center;
   font-family: "Roboto Mono", monospace;
-}
-
-.correct {
-  color: #dfd8d6;
 }
 
 .incorrect {
@@ -363,12 +331,6 @@ footer {
   justify-content: center;
   margin: 0 auto 20px;
   visibility: hidden;
-}
-
-.capslock p,
-.capslock i {
-  font-size: 16px;
-  color: #fff;
 }
 
 /***************FORMS***************/
@@ -450,10 +412,6 @@ td {
   color: rgb(22, 22, 22);
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #dfd8d6;
-}
-
 .sign-out {
   background-color: transparent;
   color: rgb(89, 97, 114);
@@ -463,10 +421,6 @@ tbody tr:nth-child(odd) {
   font-family: "Roboto Mono", monospace;
   cursor: pointer;
   display: none;
-}
-
-.sign-out:hover {
-  color: #af8750;
 }
 
 .checkbox {
@@ -484,7 +438,6 @@ tbody tr:nth-child(odd) {
   height: 100vh;
   width: 200px;
   position: absolute;
-  background-color: #dfd8d6;
   right: -200px;
   top: 0;
   z-index: 1;
@@ -511,17 +464,11 @@ tbody tr:nth-child(odd) {
 }
 
 .hamburger i {
-  color: rgb(22, 22, 22);
   font-size: 20px;
-}
-
-.hamburger i:hover {
-  color: #fff;
 }
 
 .mobile-navigation ul {
   padding-left: 15px;
-  /* background: red; */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -530,6 +477,145 @@ tbody tr:nth-child(odd) {
 
 .mobile-navigation li {
   display: block;
+}
+
+/***************LIGHT MODE***************/
+
+body.light {
+  background-color: #efe8e6;
+  color: #26243d;
+}
+
+body.light .time {
+  background-color: #dfd8d6;
+}
+
+body.light li i:hover {
+  color: #dfd8d6;
+}
+
+body.light .text {
+  color: rgb(22, 22, 22);
+}
+
+body.light .correct {
+  color: #dfd8d6;
+}
+
+body.light .user-input {
+  color: rgb(22, 22, 22);
+  border-bottom-color: #dfd8d6;
+}
+
+body.light .wrapper {
+  background-color: #dfd8d6;
+}
+
+body.light .keys div {
+  background-color: #efefee;
+  color: rgb(22, 22, 22);
+}
+
+body.light .keys div.pressed {
+  background-color: #e4e4e4;
+}
+
+body.light footer {
+  background-color: #dfd8d6;
+}
+
+body.light .card {
+  background-color: #dfd8d6;
+}
+
+body.light td {
+  color: rgb(22, 22, 22);
+}
+
+body.light tbody tr:nth-child(odd) {
+  background-color: #dfd8d6;
+}
+
+body.light .hamburger i {
+  color: rgb(22, 22, 22);
+}
+
+body.light .capslock p,
+body.light .capslock i {
+  font-size: 16px;
+  color: #fff;
+}
+
+/****************DARK MODE***************/
+
+body.dark {
+  background-color: #242933;
+  color: #af8750;
+}
+
+body.dark .time {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.dark li i:hover {
+  color: #af8750;
+}
+
+body.dark .text {
+  color: rgb(89, 97, 114);
+}
+
+body.dark .correct {
+  color: #fff;
+}
+
+body.dark .user-input {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+body.dark .wrapper {
+  background-color: rgb(43, 49, 59);
+}
+
+body.dark .keys div {
+  background-color: #af8750;
+  color: #fff;
+}
+
+body.dark .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.dark footer {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark .card {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark td {
+  color: #fff;
+}
+
+body.dark tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark .hamburger i {
+  color: #fff;
+}
+
+body.dark .capslock {
+  background-color: #af8750;
+}
+
+body.dark .capslock p,
+body.dark .capslock i {
+  font-size: 16px;
+  color: #fff;
 }
 
 /***************MEDIA QUERIES***************/

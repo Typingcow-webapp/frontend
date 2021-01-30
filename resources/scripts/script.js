@@ -13,7 +13,6 @@ const acc = [...document.querySelectorAll(".acc")];
 const results = document.getElementById("results");
 const keys = [...document.querySelectorAll(".wrapper div")];
 const logo = document.getElementById("logo");
-// const timeChoices = [...document.querySelectorAll("input[type='radio']")];
 const timeChoice = document.getElementById("time");
 const leaderboardBtns = [...document.querySelectorAll(".leaderboardBtn")];
 const settingsBtns = [...document.querySelectorAll(".settingsBtn")];
@@ -32,9 +31,13 @@ const signOut = document.getElementById("sign-out");
 const hamburgerMenuCheckbox = document.getElementById("checkbox");
 const mobileNav = document.getElementById("mobile-navigation");
 const guestText = document.getElementById("guest-text");
-const darkModeCheckbox = document.getElementById("darkmode-checkbox");
+const themes = document.querySelectorAll("input[type='radio']");
 
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
+
+if (localStorage.getItem("theme") != undefined) {
+  document.body.classList = localStorage.getItem("theme");
+}
 
 username.forEach((el) => {
   el.textContent = localStorage.getItem("username");
@@ -267,9 +270,12 @@ displayRandomQuote();
 
 /***************EVENT LISTENERS***************/
 
-// darkModeCheckbox.addEventListener("change", () => {
-//   document.body.classList.toggle("dark");
-// });
+themes.forEach((el) => {
+  el.addEventListener("change", (e) => {
+    localStorage.setItem("theme", e.target.id);
+    document.body.classList = localStorage.getItem("theme");
+  });
+});
 
 hamburgerMenuCheckbox.addEventListener("change", () => {
   mobileNav.classList.toggle("onscreen");
