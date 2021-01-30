@@ -240,9 +240,7 @@ const getRandomQuote = () => {
   return fetch(RANDOM_QUOTE_API_URL)
     .then((response) => response.json())
     .then((data) => data.content)
-    .catch(() => {
-      data.content = "Text failed loading. Please click CTRL + F5";
-    });
+    .catch(() => "Text failed loading. Please click CTRL + F5");
 };
 
 const displayRandomQuote = async () => {
