@@ -287,6 +287,11 @@ footer {
   color: rgb(22, 22, 22);
 }
 
+.themes label[for="dracula"] {
+  background-color: #282a36;
+  color: rgb(128, 80, 175);
+}
+
 .overlay,
 .mobile-overlay {
   height: 100%;
@@ -707,6 +712,86 @@ body.cow .capslock {
 
 body.cow .capslock p,
 body.cow .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
+
+/***************DARCULA THEME***************/
+
+body.dracula {
+  background-color: #282a36;
+  color: rgb(128, 80, 175);
+}
+
+body.dracula .time {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.dracula li i {
+  color: rgb(128, 80, 175);
+}
+
+body.dracula li i:hover {
+  color: rgb(155, 119, 190);
+}
+
+body.dracula .mobile-navigation {
+  background-color: #282a36;
+}
+
+body.dracula .text {
+  color: rgb(128, 80, 175);
+}
+
+body.dracula .correct {
+  color: rgb(22, 22, 22);
+}
+
+body.dracula .user-input {
+  color: rgb(128, 80, 175);
+  border-bottom-color: rgb(22, 22, 22);
+}
+
+body.dracula .wrapper {
+  background-color: #2c2e3a;
+}
+
+body.dracula .keys div {
+  background-color: rgb(128, 80, 175);
+  color: #fff;
+}
+
+body.dracula .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.dracula footer {
+  background-color: #2c2e3a;
+}
+
+body.dracula .card {
+  background-color: #282a36;
+}
+
+body.dracula td {
+  color: #fff;
+}
+
+body.dracula tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dracula .hamburger i {
+  color: rgb(128, 80, 175);
+}
+
+body.dracula .capslock {
+  background-color: rgb(128, 80, 175);
+}
+
+body.dracula .capslock p,
+body.dracula .capslock i {
   font-size: 14px;
   color: #fff;
 }

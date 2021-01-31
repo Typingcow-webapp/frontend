@@ -270,6 +270,12 @@ displayRandomQuote();
 
 /***************EVENT LISTENERS***************/
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    window.location.reload();
+  }
+});
+
 themes.forEach((el) => {
   el.addEventListener("change", (e) => {
     localStorage.setItem("theme", e.target.id);
