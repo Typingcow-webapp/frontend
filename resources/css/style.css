@@ -292,6 +292,11 @@ footer {
   color: rgb(128, 80, 175);
 }
 
+.themes label[for="invert-dracula"] {
+  background-color: rgb(152, 101, 204);
+  color: #2c2e3a;
+}
+
 .overlay,
 .mobile-overlay {
   height: 100%;
@@ -792,6 +797,95 @@ body.dracula .capslock {
 
 body.dracula .capslock p,
 body.dracula .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
+
+/***************INVERTED DRACULA THEME***************/
+
+body.invert-dracula {
+  background-color: rgb(128, 80, 175);
+  color: #282a36;
+}
+
+body.invert-dracula .time {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.invert-dracula nav li span {
+  color: #282a36;
+}
+
+body.invert-dracula li i {
+  color: #282a36;
+}
+
+body.invert-dracula li i:hover {
+  color: #4e4f52;
+}
+
+body.invert-dracula .mobile-navigation {
+  background-color: rgb(128, 80, 175);
+}
+
+body.invert-dracula .mobile-navigation ul li {
+  color: #282a36;
+}
+
+body.invert-dracula .text {
+  color: #282a36;
+}
+
+body.invert-dracula .correct {
+  color: rgb(145, 100, 189);
+}
+
+body.invert-dracula .user-input {
+  color: #282a36;
+  border-bottom-color: rgb(22, 22, 22);
+}
+
+body.invert-dracula .wrapper {
+  background-color: #2c2e3a;
+}
+
+body.invert-dracula .keys div {
+  background-color: rgb(128, 80, 175);
+  color: #fff;
+}
+
+body.invert-dracula .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.invert-dracula footer {
+  background-color: #2c2e3a;
+  color: rgb(128, 80, 175);
+}
+
+body.invert-dracula .card {
+  background-color: rgb(128, 80, 175);
+}
+
+body.invert-dracula td {
+  color: #fff;
+}
+
+body.invert-dracula tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.invert-dracula .hamburger i {
+  color: #282a36;
+}
+
+body.invert-dracula .capslock {
+  background-color: rgb(128, 80, 175);
+}
+
+body.invert-dracula .capslock p,
+body.invert-dracula .capslock i {
   font-size: 14px;
   color: #fff;
 }
