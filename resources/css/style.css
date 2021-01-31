@@ -282,6 +282,11 @@ footer {
   color: #af8750;
 }
 
+.themes label[for="cow"] {
+  background-color: #f8a62c;
+  color: rgb(22, 22, 22);
+}
+
 .overlay,
 .mobile-overlay {
   height: 100%;
@@ -544,9 +549,9 @@ body.light .hamburger i {
   color: rgb(22, 22, 22);
 }
 
-body.light .capslock p,
-body.light .capslock i {
-  font-size: 16px;
+body.dark .capslock p,
+body.dark .capslock i {
+  font-size: 14px;
   color: #fff;
 }
 
@@ -622,7 +627,87 @@ body.dark .capslock {
 
 body.dark .capslock p,
 body.dark .capslock i {
-  font-size: 16px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/***************COW THEME***************/
+
+body.cow {
+  background-color: #ffbd59;
+  color: rgb(22, 22, 22);
+}
+
+body.cow .time {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.cow li i {
+  color: rgb(22, 22, 22);
+}
+
+body.cow li i:hover {
+  color: rgb(89, 97, 114);
+}
+
+body.cow .mobile-navigation {
+  background-color: #ffbd59;
+}
+
+body.cow .text {
+  color: rgb(22, 22, 22);
+}
+
+body.cow .correct {
+  color: #f8a62c;
+}
+
+body.cow .user-input {
+  color: rgb(22, 22, 22);
+  border-bottom-color: rgb(22, 22, 22);
+}
+
+body.cow .wrapper {
+  background-color: #e6ab52;
+}
+
+body.cow .keys div {
+  background-color: #ffbd59;
+  color: #fff;
+}
+
+body.cow .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.cow footer {
+  background-color: #e6ab52;
+}
+
+body.cow .card {
+  background-color: #ffbd59;
+}
+
+body.cow td {
+  color: #fff;
+}
+
+body.cow tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.cow .hamburger i {
+  color: rgb(22, 22, 22);
+}
+
+body.cow .capslock {
+  background-color: #e6ab52;
+}
+
+body.cow .capslock p,
+body.cow .capslock i {
+  font-size: 14px;
   color: #fff;
 }
 
