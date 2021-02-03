@@ -33,7 +33,8 @@ const mobileNav = document.getElementById("mobile-navigation");
 const guestText = document.getElementById("guest-text");
 const themes = document.querySelectorAll("input[type='radio']");
 
-const backendURL = "https://dry-thicket-18544.herokuapp.com";
+// const backendURL = "https://dry-thicket-18544.herokuapp.com";
+const backendURL = "http://localhost:3000";
 
 if (localStorage.getItem("theme") != undefined) {
   document.body.classList = localStorage.getItem("theme");
@@ -59,6 +60,7 @@ let numCharsWritten = 0;
 let wrong = false;
 let once = false;
 let clickedProfile = false;
+let clickedLeaderboard = false;
 
 /***************FUNCTIONS***************/
 
@@ -349,6 +351,59 @@ leaderboardBtns.forEach((el) => {
 
     leaderboard.style.display = "flex";
     overlay.style.display = "block";
+
+    if (!clickedLeaderboard) {
+      fetch(`${backendURL}/api/user/leaderboard`, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          let userPbs = [];
+          let rank = 1;
+
+          data.forEach((user) => {
+            let fifteenSecs;
+
+            user.pb.forEach((el, index) => {
+              if (el.timer === "15s") {
+                fifteenSecs = index;
+              }
+            });
+
+            console.log(fifteenSecs);
+
+            if (user.pb[fifteenSecs] != undefined) {
+              userPbs.push({ username: user.username, pb: +user.pb[0].wpm });
+            }
+          });
+
+          userPbs = userPbs.sort((a, b) => b.pb - a.pb);
+
+          userPbs.forEach((el) => {
+            const tableRow = document.createElement("tr");
+            const username = document.createElement("td");
+            const pb = document.createElement("td");
+            let userRank = document.createElement("td");
+
+            username.textContent = el.username;
+            pb.textContent = el.pb;
+            userRank.textContent = rank;
+
+            rank++;
+
+            tableRow.appendChild(userRank);
+            tableRow.appendChild(username);
+            tableRow.appendChild(pb);
+
+            leaderboard.children[0].children[1].appendChild(tableRow);
+          });
+        });
+
+      clickedLeaderboard = true;
+    }
   });
 });
 
