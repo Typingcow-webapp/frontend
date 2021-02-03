@@ -33,8 +33,7 @@ const mobileNav = document.getElementById("mobile-navigation");
 const guestText = document.getElementById("guest-text");
 const themes = document.querySelectorAll("input[type='radio']");
 
-// const backendURL = "https://dry-thicket-18544.herokuapp.com";
-const backendURL = "http://localhost:3000";
+const backendURL = "https://dry-thicket-18544.herokuapp.com";
 
 if (localStorage.getItem("theme") != undefined) {
   document.body.classList = localStorage.getItem("theme");
