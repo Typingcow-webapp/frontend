@@ -66,11 +66,11 @@
       <div>
         <div class="text">
           <div>
-          <div class="capslock" id="capslock">
-            <p><i class="fas fa-lock"></i> Caps Lock</p>
-          </div>
+            <div class="capslock" id="capslock">
+              <p><i class="fas fa-lock"></i> Caps Lock</p>
+            </div>
 
-          <p id="text"></p>
+            <p id="text"></p>
           </div>
         </div>
 
@@ -173,19 +173,23 @@
       <form id="register">
         <p>register</p>
 
-        <input type="text" id="username" placeholder="username">
-        <input type="password" id="password" placeholder="password">
+        <input type="text" id="username" placeholder="username" required maxlength="10">
+        <input type="password" id="password" placeholder="password" required maxlength="20">
 
         <input type="submit" value="Sign Up">
+
+        <p class="form-error" id="signup-error">There was an error signing you up</p>
       </form>
 
       <form id="login">
         <p>login</p>
 
-        <input type="text" id="username" placeholder="username">
-        <input type="password" id="password" placeholder="password">
+        <input type="text" id="username" placeholder="username" required maxlength="10">
+        <input type="password" id="password" placeholder="password" required maxlength="20">
 
         <input type="submit" value="Log In">
+
+        <p class="form-error" id="login-error">Incorrect username or password</p>
       </form>
     </section>
 
@@ -233,7 +237,7 @@
           <p>wpm</p>
         </div>
       </div>
-    
+
       <div class="stat">
         <div>
           <h2 class="acc">0%</h2>

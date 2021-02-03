@@ -8,6 +8,7 @@ const text = document.getElementById("text");
 const textArr = text.textContent.split("");
 const correctText = document.getElementById("correct");
 const wpm = [...document.querySelectorAll(".wpm")];
+const rawWpm = document.querySelector(".raw-wpm");
 const cpm = document.getElementById("cpm");
 const acc = [...document.querySelectorAll(".acc")];
 const results = document.getElementById("results");
@@ -32,6 +33,8 @@ const hamburgerMenuCheckbox = document.getElementById("checkbox");
 const mobileNav = document.getElementById("mobile-navigation");
 const guestText = document.getElementById("guest-text");
 const themes = document.querySelectorAll("input[type='radio']");
+const loginError = document.getElementById("login-error");
+const signupError = document.getElementById("signup-error");
 
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
 
@@ -60,6 +63,9 @@ let wrong = false;
 let once = false;
 let clickedProfile = false;
 let clickedLeaderboard = false;
+let numOfChars = 0;
+let allCorrect = true;
+let correctLetter = true;
 
 /***************FUNCTIONS***************/
 
@@ -236,7 +242,12 @@ const getUserPbs = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => res(data));
+      .then((data) => res(data))
+      .catch(() => {
+        if (method === "signup") {
+          signupError.style.display = "block";
+        }
+      });
   });
 };
 
@@ -299,9 +310,6 @@ document
   .addEventListener("submit", (e) => formSubmit(e, "signup"));
 
 document.getElementById("login").addEventListener("submit", async (e) => {
-  profile.style.display = "none";
-  overlay.style.display = "none";
-
   const url = `${backendURL}/api/user/profile`;
   const token = await formSubmit(e, "login");
 
@@ -320,7 +328,14 @@ document.getElementById("login").addEventListener("submit", async (e) => {
       username.forEach((el) => {
         el.textContent = localStorage.getItem("username");
       });
+
       guestText.textContent = "";
+
+      profile.style.display = "none";
+      overlay.style.display = "none";
+    })
+    .catch((err) => {
+      loginError.style.display = "block";
     });
 });
 
@@ -371,8 +386,6 @@ leaderboardBtns.forEach((el) => {
                 fifteenSecs = index;
               }
             });
-
-            console.log(fifteenSecs);
 
             if (user.pb[fifteenSecs] != undefined) {
               userPbs.push({ username: user.username, pb: +user.pb[0].wpm });
@@ -502,23 +515,37 @@ overlay.addEventListener("click", () => {
   overlay.style.display = "none";
 });
 
-// timeChoices.forEach((choice) => {
-//   choice.addEventListener("change", () => {
-//     time.textContent = choice.id;
-//     selectedTime = choice.id;
-//   });
-// });
-
 userInput.addEventListener("input", (e) => {
   timeChoice.setAttribute("disabled", "true");
 
   const quoteArr = text.querySelectorAll("span");
   const userInputArr = userInput.value.split("");
 
-  let once = false;
   let finished = false;
 
   numCharsWritten++;
+
+  if (e.inputType === "deleteContentBackward") {
+    numOfChars--;
+  } else {
+    numOfChars++;
+  }
+
+  if (numOfChars === 4 && e.inputType !== "deleteContentBackward") {
+    // rawWpm.textContent = +rawWpm.textContent + 1 * (60 / +selectedTime);
+
+    if (allCorrect) {
+      wpm.forEach((el) => {
+        el.textContent = +el.textContent + 1 * (60 / +selectedTime);
+      });
+    }
+
+    allCorrect = true;
+  }
+
+  if (numOfChars === 4) {
+    numOfChars = 0;
+  }
 
   quoteArr.forEach((char, index, arr) => {
     if (
@@ -536,24 +563,47 @@ userInput.addEventListener("input", (e) => {
       char.classList.add("correct");
       char.classList.remove("incorrect");
 
-      if (!once) {
-        cpm.textContent = +cpm.textContent + 1 * (60 / +selectedTime);
-
-        if (e.data === " ") {
-          wpm.forEach((el) => {
-            el.textContent = +el.textContent + 1 * (60 / +selectedTime);
-          });
-        }
-
-        once = true;
+      if (
+        userInputArr[index] === " " &&
+        userInputArr[index - 1] == " " &&
+        userInputArr[index + 1] == undefined
+      ) {
+        correctLetter = false;
       }
+
+      // if (!once) {
+      //   cpm.textContent = +cpm.textContent + 1 * (60 / +selectedTime);
+
+      //   if (e.data === " ") {
+      //     wpm.forEach((el) => {
+      //       el.textContent = +el.textContent + 1 * (60 / +selectedTime);
+      //     });
+      //   }
+
+      //   once = true;
+      // }
     } else {
       char.classList.add("incorrect");
       char.classList.remove("correct");
+
+      // Check if the mistake is in the current letter
+
+      if (userInputArr[index] !== char && userInputArr[index + 1] == null) {
+        console.log("last letter mistake");
+
+        allCorrect = false;
+        correctLetter = false;
+      }
     }
 
     if (userInputArr[arr.length - 1] != null) finished = true;
   });
+
+  if (correctLetter) {
+    cpm.textContent = +cpm.textContent + 1;
+  }
+
+  correctLetter = true;
 
   if (!keypressed) {
     startTimer();
@@ -563,16 +613,18 @@ userInput.addEventListener("input", (e) => {
 
   if (finished) displayRandomQuote();
 
-  acc.forEach((el) => {
-    if ((numCharsWritten - mistakes) * (100 / numCharsWritten) < 0) {
-      el.textContent = "0%";
-    } else {
+  if ((numCharsWritten - mistakes) * (100 / numCharsWritten) < 0) {
+    acc.forEach((el) => (el.textContent = "0.00%"));
+  } else if ((numCharsWritten - mistakes) * (100 / numCharsWritten) > 100) {
+    acc.forEach((el) => (el.textContent = "100.00%"));
+  } else {
+    acc.forEach((el) => {
       el.textContent = `${(
         (numCharsWritten - mistakes) *
         (100 / numCharsWritten)
       ).toFixed(2)}%`;
-    }
-  });
+    });
+  }
 });
 
 document.addEventListener("keydown", (e) => {
