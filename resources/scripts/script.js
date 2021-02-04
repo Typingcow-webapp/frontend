@@ -346,7 +346,7 @@ signOut.addEventListener("click", () => {
 
   localStorage.removeItem("username");
   localStorage.removeItem("token");
-  localStorage.setItem("authenticated", "false");
+  localStorage.removeItem("authenticated");
 
   username.textContent = null;
 
