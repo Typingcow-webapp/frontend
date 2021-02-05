@@ -9,7 +9,7 @@ const textArr = text.textContent.split("");
 const correctText = document.getElementById("correct");
 const wpm = [...document.querySelectorAll(".wpm")];
 const rawWpm = document.querySelector(".raw-wpm");
-const cpm = document.getElementById("cpm");
+const cpm = document.querySelectorAll(".cpm");
 const acc = [...document.querySelectorAll(".acc")];
 const results = document.getElementById("results");
 const keys = [...document.querySelectorAll(".wrapper div")];
@@ -86,7 +86,7 @@ const startTimer = () => {
             },
             body: JSON.stringify({
               wpm: wpm[0].textContent,
-              cpm: cpm.textContent,
+              cpm: cpm[0].textContent,
               acc: acc[0].textContent,
               timer: `${selectedTime}s`,
             }),
@@ -111,7 +111,7 @@ const startTimer = () => {
                   body: JSON.stringify({
                     timer: `${selectedTime}s`,
                     wpm: wpm[0].textContent,
-                    cpm: cpm.textContent,
+                    cpm: cpm[0].textContent,
                     acc: acc[0].textContent,
                   }),
                 });
@@ -523,38 +523,21 @@ userInput.addEventListener("input", (e) => {
 
   let finished = false;
 
-  numCharsWritten++;
-
   if (e.inputType === "deleteContentBackward") {
     numOfChars--;
   } else {
     numOfChars++;
-  }
-
-  if (numOfChars === 4 && e.inputType !== "deleteContentBackward") {
-    // rawWpm.textContent = +rawWpm.textContent + 1 * (60 / +selectedTime);
-
-    if (allCorrect) {
-      wpm.forEach((el) => {
-        el.textContent = +el.textContent + 1 * (60 / +selectedTime);
-      });
-    }
-
-    allCorrect = true;
-  }
-
-  if (numOfChars === 4) {
-    numOfChars = 0;
+    numCharsWritten++;
   }
 
   quoteArr.forEach((char, index, arr) => {
-    if (
-      userInputArr[index] !== char.textContent &&
-      userInputArr[index] != null &&
-      userInputArr[index + 1] == null
-    ) {
-      mistakes++;
-    }
+    // if (
+    //   userInputArr[index] !== char.textContent &&
+    //   userInputArr[index] != null &&
+    //   userInputArr[index + 1] == null
+    // ) {
+    //   mistakes++;
+    // }
 
     if (userInputArr[index] == null) {
       char.classList.remove("correct");
@@ -562,26 +545,6 @@ userInput.addEventListener("input", (e) => {
     } else if (userInputArr[index] === char.textContent) {
       char.classList.add("correct");
       char.classList.remove("incorrect");
-
-      if (
-        userInputArr[index] === " " &&
-        userInputArr[index - 1] == " " &&
-        userInputArr[index + 1] == undefined
-      ) {
-        correctLetter = false;
-      }
-
-      // if (!once) {
-      //   cpm.textContent = +cpm.textContent + 1 * (60 / +selectedTime);
-
-      //   if (e.data === " ") {
-      //     wpm.forEach((el) => {
-      //       el.textContent = +el.textContent + 1 * (60 / +selectedTime);
-      //     });
-      //   }
-
-      //   once = true;
-      // }
     } else {
       char.classList.add("incorrect");
       char.classList.remove("correct");
@@ -592,18 +555,48 @@ userInput.addEventListener("input", (e) => {
         console.log("last letter mistake");
 
         allCorrect = false;
-        correctLetter = false;
       }
     }
 
     if (userInputArr[arr.length - 1] != null) finished = true;
   });
 
-  if (correctLetter) {
-    cpm.textContent = +cpm.textContent + 1;
+  if (numOfChars === 5 && e.inputType !== "deleteContentBackward") {
+    rawWpm.textContent = +rawWpm.textContent + 1 * (60 / +selectedTime);
+
+    if (allCorrect) {
+      wpm.forEach((el) => {
+        el.textContent = +el.textContent + 1 * (60 / +selectedTime);
+      });
+
+      cpm.forEach((el) => {
+        el.textContent = +el.textContent + 5 * (60 / +selectedTime);
+      });
+    } else {
+      mistakes++;
+    }
+
+    if ((numCharsWritten - mistakes) * (100 / numCharsWritten) < 0) {
+      acc.forEach((el) => (el.textContent = "0.00%"));
+    } else if ((numCharsWritten - mistakes) * (100 / numCharsWritten) > 100) {
+      acc.forEach((el) => (el.textContent = "100.00%"));
+    } else {
+      acc.forEach((el) => {
+        el.textContent = `${(
+          (numCharsWritten - mistakes) *
+          (100 / numCharsWritten)
+        ).toFixed(2)}%`;
+      });
+    }
+
+    // console.log(numCharsWritten);
+
+    allCorrect = true;
   }
 
-  correctLetter = true;
+  if (numOfChars === 5) {
+    numOfChars = 0;
+  }
 
   if (!keypressed) {
     startTimer();
@@ -612,19 +605,6 @@ userInput.addEventListener("input", (e) => {
   }
 
   if (finished) displayRandomQuote();
-
-  if ((numCharsWritten - mistakes) * (100 / numCharsWritten) < 0) {
-    acc.forEach((el) => (el.textContent = "0.00%"));
-  } else if ((numCharsWritten - mistakes) * (100 / numCharsWritten) > 100) {
-    acc.forEach((el) => (el.textContent = "100.00%"));
-  } else {
-    acc.forEach((el) => {
-      el.textContent = `${(
-        (numCharsWritten - mistakes) *
-        (100 / numCharsWritten)
-      ).toFixed(2)}%`;
-    });
-  }
 });
 
 document.addEventListener("keydown", (e) => {
