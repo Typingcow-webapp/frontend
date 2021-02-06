@@ -16,9 +16,11 @@ const keys = [...document.querySelectorAll(".wrapper div")];
 const logo = document.getElementById("logo");
 const timeChoice = document.getElementById("time");
 const leaderboardBtns = [...document.querySelectorAll(".leaderboardBtn")];
+const supportBtn = document.getElementById("supportBtn");
 const settingsBtns = [...document.querySelectorAll(".settingsBtn")];
 const profileBtns = [...document.querySelectorAll(".profileBtn")];
 const leaderboard = document.getElementById("leaderboard");
+const support = document.getElementById("support");
 const settings = document.getElementById("settings");
 const profile = document.getElementById("profile");
 const overlay = document.getElementById("overlay");
@@ -353,6 +355,11 @@ signOut.addEventListener("click", () => {
   window.location.reload();
 });
 
+supportBtn.addEventListener("click", () => {
+  support.style.display = "flex";
+  overlay.style.display = "block";
+});
+
 leaderboardBtns.forEach((el) => {
   el.addEventListener("click", (e) => {
     if (
@@ -522,6 +529,7 @@ overlay.addEventListener("click", () => {
   leaderboard.style.display = "none";
   settings.style.display = "none";
   profile.style.display = "none";
+  support.style.display = "none";
   overlay.style.display = "none";
 });
 

@@ -937,6 +937,33 @@ body.invert-dracula .capslock i {
   color: #fff;
 }
 
+.method {
+  height: 300px;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.method i {
+  color: #fff;
+  font-size: 60px;
+  margin-bottom: 25px;
+}
+
+.method p {
+  font-size: 25px;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 /***************MEDIA QUERIES***************/
 
 @media only screen and (max-width: 670px) {
