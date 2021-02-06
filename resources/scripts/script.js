@@ -434,8 +434,13 @@ settingsBtns.forEach((el) => {
       mobileOverlay.classList.remove("visible");
     }
 
-    settings.style.display = "flex";
-    overlay.style.display = "block";
+    if (localStorage.getItem("authenticated") !== "true") {
+      profile.style.display = "flex";
+      overlay.style.display = "block";
+    } else {
+      settings.style.display = "flex";
+      overlay.style.display = "block";
+    }
   });
 });
 
