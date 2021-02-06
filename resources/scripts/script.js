@@ -363,58 +363,63 @@ leaderboardBtns.forEach((el) => {
       mobileOverlay.classList.remove("visible");
     }
 
-    leaderboard.style.display = "flex";
-    overlay.style.display = "block";
+    if (localStorage.getItem("authenticated") !== "true") {
+      profile.style.display = "flex";
+      overlay.style.display = "block";
+    } else {
+      leaderboard.style.display = "flex";
+      overlay.style.display = "block";
 
-    if (!clickedLeaderboard) {
-      fetch(`${backendURL}/api/user/leaderboard`, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          let userPbs = [];
-          let rank = 1;
+      if (!clickedLeaderboard) {
+        fetch(`${backendURL}/api/user/leaderboard`, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            let userPbs = [];
+            let rank = 1;
 
-          data.forEach((user) => {
-            let fifteenSecs;
+            data.forEach((user) => {
+              let fifteenSecs;
 
-            user.pb.forEach((el, index) => {
-              if (el.timer === "15s") {
-                fifteenSecs = index;
+              user.pb.forEach((el, index) => {
+                if (el.timer === "15s") {
+                  fifteenSecs = index;
+                }
+              });
+
+              if (user.pb[fifteenSecs] != undefined) {
+                userPbs.push({ username: user.username, pb: +user.pb[0].wpm });
               }
             });
 
-            if (user.pb[fifteenSecs] != undefined) {
-              userPbs.push({ username: user.username, pb: +user.pb[0].wpm });
-            }
+            userPbs = userPbs.sort((a, b) => b.pb - a.pb);
+
+            userPbs.forEach((el) => {
+              const tableRow = document.createElement("tr");
+              const username = document.createElement("td");
+              const pb = document.createElement("td");
+              let userRank = document.createElement("td");
+
+              username.textContent = el.username;
+              pb.textContent = el.pb;
+              userRank.textContent = rank;
+
+              rank++;
+
+              tableRow.appendChild(userRank);
+              tableRow.appendChild(username);
+              tableRow.appendChild(pb);
+
+              leaderboard.children[0].children[1].appendChild(tableRow);
+            });
           });
 
-          userPbs = userPbs.sort((a, b) => b.pb - a.pb);
-
-          userPbs.forEach((el) => {
-            const tableRow = document.createElement("tr");
-            const username = document.createElement("td");
-            const pb = document.createElement("td");
-            let userRank = document.createElement("td");
-
-            username.textContent = el.username;
-            pb.textContent = el.pb;
-            userRank.textContent = rank;
-
-            rank++;
-
-            tableRow.appendChild(userRank);
-            tableRow.appendChild(username);
-            tableRow.appendChild(pb);
-
-            leaderboard.children[0].children[1].appendChild(tableRow);
-          });
-        });
-
-      clickedLeaderboard = true;
+        clickedLeaderboard = true;
+      }
     }
   });
 });
