@@ -42,6 +42,7 @@
 
       <ul>
         <li class="leaderboardBtn"><i class="fas fa-users"></i></li>
+        <li id="multiplayerBtn"><i class="fas fa-user-friends"></i></li>
         <li><a href="https://discord.gg/3ytxmYcF3M" target="_blank"><i class="fab fa-discord"></i></a></li>
         <!-- <li><a href="https://www.github.com/samyadel/typingcow" target="_blank"><i class="fas fa-code-branch"></i></a></li> -->
         <li id="supportBtn"><i class="fas fa-hand-holding-usd"></i></li>
@@ -64,6 +65,10 @@
   
   <main>
     <header>
+      <h2 class="game-code">Game Code: <span id="game-code-display"></span></h2>
+
+      <h3 class="players-display"><span id="player-1"></span> vs <span id="player-2">Waiting for player...</span></h3>
+
       <div>
         <div class="text">
           <div>
@@ -119,24 +124,28 @@
     </header>
 
     <section class="results" id="results">
-      <div class="result">
-        <p>raw wpm</p>
-        <h2 class="raw-wpm">0</h2>
-      </div>
+      <h2 id="winner"></h2>
+      
+      <div>
+        <div class="result">
+          <p>raw wpm</p>
+          <h2 class="raw-wpm">0</h2>
+        </div>
 
-      <div class="result">
-        <p>wpm</p>
-        <h2 class="wpm">0</h2>
-      </div>
-    
-      <div class="result">
-        <p>cpm</p>
-        <h2 class="cpm">0</h2>
-      </div>
-    
-      <div class="result" style="display: none;">
-        <p>acc</p>
-        <h2 class="acc">0%</h2>
+        <div class="result">
+          <p>wpm</p>
+          <h2 class="wpm">0</h2>
+        </div>
+      
+        <div class="result">
+          <p>cpm</p>
+          <h2 class="cpm">0</h2>
+        </div>
+      
+        <div class="result" style="display: none;">
+          <p>acc</p>
+          <h2 class="acc">0%</h2>
+        </div>
       </div>
     </section>
 
@@ -152,6 +161,17 @@
 
         <tbody></tbody>
       </table>
+    </section>
+
+    <section class="mutliplayer-page" id="multiplayer-page">
+      <h2>Multiplayer</h2>
+
+      <div class="options">
+        <button id="new-game-btn">Create a game</button>
+        <span>OR</span>
+        <input type="text" name="game-code" id="game-code-input" placeholder="Enter game code">
+        <button id="join-game-btn">Join Game</button>
+      </div>
     </section>
 
     <section class="card" id="support">
@@ -291,6 +311,8 @@
   </footer>
 
   <script src="https://kit.fontawesome.com/e02b0205d6.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   <script src="./resources/scripts/script.js"></script>
 </body>
 </html>

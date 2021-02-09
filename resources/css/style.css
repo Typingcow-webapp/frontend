@@ -102,6 +102,7 @@ main header {
   height: 100%;
   text-align: center;
   position: relative;
+  flex-direction: column;
 }
 
 main header > div {
@@ -170,7 +171,17 @@ footer {
   justify-content: center;
   height: 100%;
   align-items: center;
+  flex-direction: column;
   display: none;
+}
+
+.results h2 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.results > div {
+  display: flex;
 }
 
 .result {
@@ -291,6 +302,54 @@ footer {
 
 .leaderboard tbody::-webkit-scrollbar {
   display: none;
+}
+
+/***************MULTIPLAYER PAGE***************/
+
+.game-code {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.game-code,
+.players-display {
+  display: none;
+}
+
+.mutliplayer-page {
+  display: none;
+  height: 100%;
+  text-align: center;
+  padding-top: 100px;
+  /* justify-content: space-evenly; */
+  flex-direction: column;
+}
+
+.mutliplayer-page h2 {
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+.mutliplayer-page input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-family: "Roboto Mono", monospace;
+}
+
+.mutliplayer-page input::placeholder {
+  font-family: "Roboto Mono", monospace;
+}
+
+.mutliplayer-page button {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .themes input {

@@ -16,10 +16,12 @@ const keys = [...document.querySelectorAll(".wrapper div")];
 const logo = document.getElementById("logo");
 const timeChoice = document.getElementById("time");
 const leaderboardBtns = [...document.querySelectorAll(".leaderboardBtn")];
+const multiplayerBtn = document.getElementById("multiplayerBtn");
 const supportBtn = document.getElementById("supportBtn");
 const settingsBtns = [...document.querySelectorAll(".settingsBtn")];
 const profileBtns = [...document.querySelectorAll(".profileBtn")];
 const leaderboard = document.getElementById("leaderboard");
+const multiplayerPage = document.getElementById("multiplayer-page");
 const support = document.getElementById("support");
 const settings = document.getElementById("settings");
 const profile = document.getElementById("profile");
@@ -37,8 +39,60 @@ const guestText = document.getElementById("guest-text");
 const themes = document.querySelectorAll("input[type='radio']");
 const loginError = document.getElementById("login-error");
 const signupError = document.getElementById("signup-error");
+const winner = document.getElementById("winner");
+
+const socket = io("https://dry-thicket-18544.herokuapp.com", {
+  transports: ["websocket", "polling"],
+});
+
+// const socket = io("http://localhost:3000", {
+//   transports: ["websocket", "polling"],
+// });
+
+socket.on("init", handleInit);
+socket.on("gameCode", handleGameCode);
+socket.on("startGame", handleStartGame);
+socket.on("unknownGame", handleUnknownGame);
+socket.on("tooManyPlayers", handletooManyPlayers);
+socket.on("displayPlayer1", handleDisplayPlayer1);
+socket.on("displayPlayer2", handleDisplayPlayer2);
+socket.on("displayPlayer2Globally", handledisplayPlayer2Globally);
+socket.on("playerScores", handlePlayerScores);
+
+const newGameBtn = document.getElementById("new-game-btn");
+const joinGameBtn = document.getElementById("join-game-btn");
+const gameCodeInput = document.getElementById("game-code-input");
+const gameCodeDisplay = document.getElementById("game-code-display");
+const player1 = document.getElementById("player-1");
+const player2 = document.getElementById("player-2");
+
+let gameCode_;
+
+newGameBtn.addEventListener("click", () => {
+  socket.emit("newGame", localStorage.getItem("username"));
+
+  document.querySelector(".game-code").style.display = "block";
+  document.querySelector(".players-display").style.display = "block";
+
+  mainContent.style.display = "flex";
+  footer.style.display = "flex";
+  multiplayerPage.style.display = "none";
+});
+
+joinGameBtn.addEventListener("click", () => {
+  gameCode_ = gameCodeInput.value;
+
+  socket.emit("joinGame", gameCode_, localStorage.getItem("username"));
+
+  document.querySelector(".players-display").style.display = "block";
+
+  mainContent.style.display = "flex";
+  footer.style.display = "flex";
+  multiplayerPage.style.display = "none";
+});
 
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
+// const backendURL = "http://localhost:3000";
 
 if (localStorage.getItem("theme") != undefined) {
   document.body.classList = localStorage.getItem("theme");
@@ -69,7 +123,85 @@ let numOfChars = 0;
 let allCorrect = true;
 let correctLetter = true;
 
+let playerNumber;
+
 /***************FUNCTIONS***************/
+
+function handlePlayerScores(scores) {
+  if (scores.length === 2) {
+    if (
+      scores[0]["player2"] &&
+      +scores[0][Object.keys(scores[0])] > +scores[1][Object.keys(scores[1])]
+    ) {
+      winner.textContent = "Player 2 wins!";
+    } else if (
+      scores[0]["player1"] &&
+      +scores[0][Object.keys(scores[0])] > +scores[1][Object.keys(scores[1])]
+    ) {
+      winner.textContent = "Player 1 wins!";
+    } else if (
+      scores[1]["player2"] &&
+      +scores[1][Object.keys(scores[1])] > +scores[0][Object.keys(scores[0])]
+    ) {
+      winner.textContent = "Player 2 wins!";
+    } else if (
+      scores[1]["player1"] &&
+      +scores[1][Object.keys(scores[1])] > +scores[0][Object.keys(scores[0])]
+    ) {
+      winner.textContent = "Player 1 wins!";
+    } else {
+      winner.textContent = "It's a tie!";
+    }
+
+    console.log(scores);
+  }
+}
+
+function handledisplayPlayer2Globally(username) {
+  player2.textContent = username;
+}
+
+function handleDisplayPlayer1(username) {
+  player1.textContent = username;
+}
+
+function handleDisplayPlayer2(players, gameCode) {
+  player1.textContent = players[gameCode][0];
+  player2.textContent = players[gameCode][1];
+}
+
+function handleInit(number) {
+  playerNumber = number;
+}
+
+function handleGameCode(gameCode) {
+  gameCodeDisplay.textContent = gameCode;
+
+  gameCode_ = gameCodeDisplay.textContent;
+}
+
+function handleStartGame() {
+  userInput.focus();
+
+  keypressed = true;
+  startTimer();
+}
+
+function reset() {
+  playerNumber = null;
+  gameCodeInput.value = "";
+  gameCodeDisplay.textContent = "";
+}
+
+function handleUnknownGame() {
+  reset();
+  console.log("unknown game");
+}
+
+function handletooManyPlayers() {
+  reset();
+  console.log("Too many players");
+}
 
 const startTimer = () => {
   setInterval(() => {
@@ -78,6 +210,8 @@ const startTimer = () => {
     } else {
       if (!once) {
         showResults();
+
+        socket.emit("endGame", gameCode_, wpm[0].textContent, playerNumber);
 
         if (localStorage.getItem("authenticated") === "true") {
           fetch(`${backendURL}/api/user/result`, {
@@ -284,6 +418,10 @@ displayRandomQuote();
 
 /***************EVENT LISTENERS***************/
 
+window.onload = () => {
+  userInput.onpaste = (e) => e.preventDefault();
+};
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     window.location.reload();
@@ -429,6 +567,18 @@ leaderboardBtns.forEach((el) => {
       }
     }
   });
+});
+
+multiplayerBtn.addEventListener("click", () => {
+  if (localStorage.getItem("authenticated") !== "true") {
+    profile.style.display = "flex";
+    overlay.style.display = "block";
+  } else {
+    mainContent.style.display = "none";
+    results.style.display = "none";
+    footer.style.display = "none";
+    multiplayerPage.style.display = "flex";
+  }
 });
 
 settingsBtns.forEach((el) => {
