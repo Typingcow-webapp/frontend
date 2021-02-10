@@ -41,13 +41,15 @@ const loginError = document.getElementById("login-error");
 const signupError = document.getElementById("signup-error");
 const winner = document.getElementById("winner");
 
-const socket = io("https://dry-thicket-18544.herokuapp.com", {
-  transports: ["websocket", "polling"],
-});
+const loadingText = document.getElementById("loading-text");
 
-// const socket = io("http://localhost:3000", {
+// const socket = io("https://dry-thicket-18544.herokuapp.com", {
 //   transports: ["websocket", "polling"],
 // });
+
+const socket = io("http://localhost:3000", {
+  transports: ["websocket", "polling"],
+});
 
 socket.on("init", handleInit);
 socket.on("gameCode", handleGameCode);
@@ -67,12 +69,17 @@ const player1 = document.getElementById("player-1");
 const player2 = document.getElementById("player-2");
 
 let gameCode_;
+let timerIntervalId;
 
 newGameBtn.addEventListener("click", () => {
+  restart();
+
   socket.emit("newGame", localStorage.getItem("username"));
 
   document.querySelector(".game-code").style.display = "block";
   document.querySelector(".players-display").style.display = "block";
+
+  userInput.setAttribute("disabled", "true");
 
   mainContent.style.display = "flex";
   footer.style.display = "flex";
@@ -91,8 +98,8 @@ joinGameBtn.addEventListener("click", () => {
   multiplayerPage.style.display = "none";
 });
 
-const backendURL = "https://dry-thicket-18544.herokuapp.com";
-// const backendURL = "http://localhost:3000";
+// const backendURL = "https://dry-thicket-18544.herokuapp.com";
+const backendURL = "http://localhost:3000";
 
 if (localStorage.getItem("theme") != undefined) {
   document.body.classList = localStorage.getItem("theme");
@@ -126,6 +133,37 @@ let correctLetter = true;
 let playerNumber;
 
 /***************FUNCTIONS***************/
+
+function restart() {
+  displayRandomQuote();
+
+  keypressed = false;
+
+  mainContent.style.display = "flex";
+  footer.style.display = "flex";
+  results.style.display = "none";
+  leaderboard.style.display = "none";
+  profile.style.display = "none";
+  settings.style.display = "none";
+  multiplayerPage.style.display = "none";
+  overlay.style.display = "none";
+  mobileOverlay.style.display = "none";
+
+  if (timerIntervalId) {
+    clearInterval(timerIntervalId);
+  }
+
+  time.textContent = "15";
+  userInput.value = "";
+
+  wpm.forEach((el) => (el.textContent = "0"));
+  cpm.forEach((el) => (el.textContent = "0"));
+  acc.forEach((el) => (el.textContent = "0%"));
+  rawWpm.textContent = "0";
+
+  document.querySelector(".game-code").style.display = "none";
+  document.querySelector(".players-display").style.display = "none";
+}
 
 function handlePlayerScores(scores) {
   if (scores.length === 2) {
@@ -204,7 +242,7 @@ function handletooManyPlayers() {
 }
 
 const startTimer = () => {
-  setInterval(() => {
+  timerIntervalId = setInterval(() => {
     if (time.textContent !== "0") {
       time.textContent = +time.textContent - 1;
     } else {
@@ -388,9 +426,21 @@ const getUserPbs = () => {
 };
 
 const getRandomQuote = () => {
+  userInput.setAttribute("disabled", "true");
+  loadingText.style.display = "block";
+  text.style.display = "none";
+
   return fetch(RANDOM_QUOTE_API_URL)
     .then((response) => response.json())
-    .then((data) => data.content);
+    .then((data) => {
+      loadingText.style.display = "none";
+      text.style.display = "block";
+      userInput.removeAttribute("disabled");
+
+      userInput.focus();
+
+      return data.content;
+    });
 };
 
 const displayRandomQuote = async () => {
@@ -424,7 +474,7 @@ window.onload = () => {
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
-    window.location.reload();
+    restart();
   }
 });
 
@@ -798,5 +848,5 @@ document.addEventListener("keyup", (e) => {
 });
 
 logo.addEventListener("click", () => {
-  window.location.reload();
+  restart();
 });

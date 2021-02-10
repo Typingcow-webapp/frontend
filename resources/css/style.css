@@ -131,6 +131,18 @@ main header > div {
   line-height: 1.6;
 }
 
+.loading-text {
+  /* text-align: center;
+  display: none; */
+  width: 50px;
+  height: 50px;
+  border: 5px solid #af8750;
+  border-top: 6px solid rgb(27, 31, 38);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s infinite linear;
+}
+
 .stats {
   text-align: center;
   width: 100%;
@@ -1021,6 +1033,17 @@ body.invert-dracula .capslock i {
 
 a {
   text-decoration: none;
+}
+
+/***************KEYFRAMES***************/
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /***************MEDIA QUERIES***************/
