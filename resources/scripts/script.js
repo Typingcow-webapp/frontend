@@ -43,13 +43,13 @@ const winner = document.getElementById("winner");
 
 const loadingText = document.getElementById("loading-text");
 
-// const socket = io("https://dry-thicket-18544.herokuapp.com", {
-//   transports: ["websocket", "polling"],
-// });
-
-const socket = io("http://localhost:3000", {
+const socket = io("https://dry-thicket-18544.herokuapp.com", {
   transports: ["websocket", "polling"],
 });
+
+// const socket = io("http://localhost:3000", {
+//   transports: ["websocket", "polling"],
+// });
 
 socket.on("init", handleInit);
 socket.on("gameCode", handleGameCode);
@@ -98,8 +98,8 @@ joinGameBtn.addEventListener("click", () => {
   multiplayerPage.style.display = "none";
 });
 
-// const backendURL = "https://dry-thicket-18544.herokuapp.com";
-const backendURL = "http://localhost:3000";
+const backendURL = "https://dry-thicket-18544.herokuapp.com";
+// const backendURL = "http://localhost:3000";
 
 if (localStorage.getItem("theme") != undefined) {
   document.body.classList = localStorage.getItem("theme");
@@ -473,9 +473,11 @@ window.onload = () => {
 };
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    restart();
-  }
+  // if (e.key === "Enter") {
+  //   restart();
+  // }
+
+  console.log(e);
 });
 
 themes.forEach((el) => {
