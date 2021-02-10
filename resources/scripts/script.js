@@ -473,11 +473,9 @@ window.onload = () => {
 };
 
 document.addEventListener("keydown", (e) => {
-  // if (e.key === "Enter") {
-  //   restart();
-  // }
-
-  console.log(e);
+  if (e.key === "Enter" && e.ctrlKey === true) {
+    restart();
+  }
 });
 
 themes.forEach((el) => {
