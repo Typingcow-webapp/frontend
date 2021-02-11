@@ -87,6 +87,8 @@ newGameBtn.addEventListener("click", () => {
 });
 
 joinGameBtn.addEventListener("click", () => {
+  restart();
+
   gameCode_ = gameCodeInput.value;
 
   socket.emit("joinGame", gameCode_, localStorage.getItem("username"));
