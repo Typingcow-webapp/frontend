@@ -148,6 +148,10 @@ function restart() {
   multiplayerPage.style.display = "none";
   overlay.style.display = "none";
   mobileOverlay.style.display = "none";
+  userStats.style.display = "none";
+  support.style.display = "none";
+  signOut.style.display = "none";
+  document.querySelector("nav > ul").style.display = "block";
 
   if (timerIntervalId) {
     clearInterval(timerIntervalId);
@@ -187,7 +191,9 @@ function handlePlayerScores(scores) {
       +scores[1][Object.keys(scores[1])] > +scores[0][Object.keys(scores[0])]
     ) {
       winner.textContent = "Player 1 wins!";
-    } else {
+    } else if (
+      +scores[0][Object.keys(scores[0])] === +scores[1][Object.keys(scores[1])]
+    ) {
       winner.textContent = "It's a tie!";
     }
 
@@ -665,7 +671,7 @@ profileBtns.forEach((el) => {
       profile.style.display = "flex";
       overlay.style.display = "block";
     } else {
-      if (!clickedProfile) {
+      if (userStats.style.display !== "flex") {
         mainContent.style.display = "none";
         results.style.display = "none";
         footer.style.display = "none";
