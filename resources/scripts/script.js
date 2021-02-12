@@ -39,66 +39,66 @@ const guestText = document.getElementById("guest-text");
 const themes = document.querySelectorAll("input[type='radio']");
 const loginError = document.getElementById("login-error");
 const signupError = document.getElementById("signup-error");
-const winner = document.getElementById("winner");
+// const winner = document.getElementById("winner");
 
 const loadingText = document.getElementById("loading-text");
 
-const socket = io("https://dry-thicket-18544.herokuapp.com", {
-  transports: ["websocket", "polling"],
-});
+// const socket = io("https://dry-thicket-18544.herokuapp.com", {
+//   transports: ["websocket", "polling"],
+// });
 
 // const socket = io("http://localhost:3000", {
 //   transports: ["websocket", "polling"],
 // });
 
-socket.on("init", handleInit);
-socket.on("gameCode", handleGameCode);
-socket.on("startGame", handleStartGame);
-socket.on("unknownGame", handleUnknownGame);
-socket.on("tooManyPlayers", handletooManyPlayers);
-socket.on("displayPlayer1", handleDisplayPlayer1);
-socket.on("displayPlayer2", handleDisplayPlayer2);
-socket.on("displayPlayer2Globally", handledisplayPlayer2Globally);
-socket.on("playerScores", handlePlayerScores);
+// socket.on("init", handleInit);
+// socket.on("gameCode", handleGameCode);
+// socket.on("startGame", handleStartGame);
+// socket.on("unknownGame", handleUnknownGame);
+// socket.on("tooManyPlayers", handletooManyPlayers);
+// socket.on("displayPlayer1", handleDisplayPlayer1);
+// socket.on("displayPlayer2", handleDisplayPlayer2);
+// socket.on("displayPlayer2Globally", handledisplayPlayer2Globally);
+// socket.on("playerScores", handlePlayerScores);
 
-const newGameBtn = document.getElementById("new-game-btn");
-const joinGameBtn = document.getElementById("join-game-btn");
-const gameCodeInput = document.getElementById("game-code-input");
-const gameCodeDisplay = document.getElementById("game-code-display");
-const player1 = document.getElementById("player-1");
-const player2 = document.getElementById("player-2");
+// const newGameBtn = document.getElementById("new-game-btn");
+// const joinGameBtn = document.getElementById("join-game-btn");
+// const gameCodeInput = document.getElementById("game-code-input");
+// const gameCodeDisplay = document.getElementById("game-code-display");
+// const player1 = document.getElementById("player-1");
+// const player2 = document.getElementById("player-2");
 
-let gameCode_;
-let timerIntervalId;
+// let gameCode_;
+// let timerIntervalId;
 
-newGameBtn.addEventListener("click", () => {
-  restart();
+// newGameBtn.addEventListener("click", () => {
+//   restart();
 
-  socket.emit("newGame", localStorage.getItem("username"));
+//   socket.emit("newGame", localStorage.getItem("username"));
 
-  document.querySelector(".game-code").style.display = "block";
-  document.querySelector(".players-display").style.display = "block";
+//   document.querySelector(".game-code").style.display = "block";
+//   document.querySelector(".players-display").style.display = "block";
 
-  userInput.setAttribute("disabled", "true");
+//   userInput.setAttribute("disabled", "true");
 
-  mainContent.style.display = "flex";
-  footer.style.display = "flex";
-  multiplayerPage.style.display = "none";
-});
+//   mainContent.style.display = "flex";
+//   footer.style.display = "flex";
+//   multiplayerPage.style.display = "none";
+// });
 
-joinGameBtn.addEventListener("click", () => {
-  restart();
+// joinGameBtn.addEventListener("click", () => {
+//   restart();
 
-  gameCode_ = gameCodeInput.value;
+//   gameCode_ = gameCodeInput.value;
 
-  socket.emit("joinGame", gameCode_, localStorage.getItem("username"));
+//   socket.emit("joinGame", gameCode_, localStorage.getItem("username"));
 
-  document.querySelector(".players-display").style.display = "block";
+//   document.querySelector(".players-display").style.display = "block";
 
-  mainContent.style.display = "flex";
-  footer.style.display = "flex";
-  multiplayerPage.style.display = "none";
-});
+//   mainContent.style.display = "flex";
+//   footer.style.display = "flex";
+//   multiplayerPage.style.display = "none";
+// });
 
 const backendURL = "https://dry-thicket-18544.herokuapp.com";
 // const backendURL = "http://localhost:3000";
@@ -257,7 +257,7 @@ const startTimer = () => {
       if (!once) {
         showResults();
 
-        socket.emit("endGame", gameCode_, wpm[0].textContent, playerNumber);
+        // socket.emit("endGame", gameCode_, wpm[0].textContent, playerNumber);
 
         if (localStorage.getItem("authenticated") === "true") {
           fetch(`${backendURL}/api/user/result`, {
