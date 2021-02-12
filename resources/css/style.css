@@ -105,6 +105,10 @@ main header {
   flex-direction: column;
 }
 
+.multiplayerBtn {
+  display: none;
+}
+
 main header > div {
   height: 600px;
   display: flex;
