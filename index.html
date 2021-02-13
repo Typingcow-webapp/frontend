@@ -11,28 +11,36 @@
   <meta property="og:type" content="website">
   <meta name="og:image" content="https://typingcow.com/resources/images/cow.png">
   <meta name="theme-color" content="#FFBD59">
-  <script data-ad-client="ca-pub-3001013065990840" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/ico" href="./resources/images/favicon.ico" />
   <link rel="stylesheet" href="./resources/css/reset.css">
   <link rel="stylesheet" href="./resources/css/style.css">
+  <link rel="stylesheet" href="./resources/css/themes.css">
   <title>Typingcow</title>
 </head>
 
 <body>
+  <!-- Overlays -->
+
   <div class="overlay" id="overlay"></div>
   <div class="mobile-overlay" id="mobile-overlay"></div>
 
+  <!-- Site Header -->
+
   <header>
+    <!-- Navigation Menu -->
+
     <nav>
       <div>
+        <!-- Hamburger Menu For Mobile -->
+
         <input type="checkbox" id="checkbox" class="checkbox">
         <label for="checkbox" class="hamburger"><i class="fas fa-bars"></i></label>
+
         <h1 class="logo" id="logo">typingcow</h1>
 
-        <select id="time" class="time">
+        <select id="time">
           <option value="15">15 seconds</option>
           <option value="30">30 seconds</option>
           <option value="60">60 seconds</option>
@@ -40,17 +48,22 @@
         </select>
       </div>
 
+      <!-- Navigation Buttons -->
+
       <ul>
         <li class="leaderboardBtn"><i class="fas fa-users"></i></li>
-        <li id="multiplayerBtn" class="multiplayerBtn"><i class="fas fa-user-friends"></i></li>
         <li><a href="https://discord.gg/3ytxmYcF3M" target="_blank"><i class="fab fa-discord"></i></a></li>
         <li id="supportBtn"><i class="fas fa-hand-holding-usd"></i></li>
         <li class="settingsBtn"><i class="fas fa-cog"></i></li>
         <li class="profileBtn"><i class="fas fa-user"></i> <span class="user-name"></span></li>
       </ul>
 
+      <!-- Sign out Button -->
+
       <button class="sign-out" id="sign-out"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
     </nav>
+
+    <!-- Mobile Navigation -->
 
     <nav class="mobile-navigation" id="mobile-navigation">
       <ul>
@@ -61,26 +74,37 @@
       </ul>
     </nav>
   </header>
+
+  <!-- Main Content -->
   
   <main>
     <header>
-      <h2 class="game-code">Game Code: <span id="game-code-display"></span></h2>
-
-      <h3 class="players-display"><span id="player-1"></span> vs <span id="player-2">Waiting for player...</span></h3>
-
       <div>
-        <div class="text">
+        <!-- Text Container -->
+
+        <div class="text-container">
           <div>
+            <!-- Capslock Identifier -->
+
             <div class="capslock" id="capslock">
               <p><i class="fas fa-lock"></i> Caps Lock</p>
             </div>
 
+            <!-- The quote the user has to write -->
+
             <p id="text"></p>
+
+            <!-- Loading wheel for quote --> 
+
             <div id="loading-text" class="loading-text"></div>
           </div>
         </div>
 
+        <!-- Input element user uses to copy the quote -->
+
         <input type="text" id="user-input" class="user-input" data-lpignore="true" autocomplete="off">
+
+        <!-- Virtual Keyboard -->
 
         <div class="keyboard">
           <div class="wrapper">
@@ -121,28 +145,31 @@
             </div>
           </div>
         </div>
+      </div>
     </header>
 
-    <section class="results" id="results">
-      <h2 id="winner"></h2>
-      
+    <!-- User end results -->
+
+    <section class="end-results" id="results">
       <div>
-        <div class="result">
+        <div class="end-result">
           <p>raw wpm</p>
           <h2 id="raw-wpm">0</h2>
         </div>
 
-        <div class="result">
+        <div class="end-result">
           <p>wpm</p>
           <h2 class="wpm">0</h2>
         </div>
       
-        <div class="result">
+        <div class="end-result">
           <p>cpm</p>
           <h2 class="cpm">0</h2>
         </div>
       </div>
     </section>
+
+    <!-- Leaderboard -->
 
     <section class="card leaderboard" id="leaderboard">
       <table>
@@ -156,18 +183,9 @@
 
         <tbody></tbody>
       </table>
-    </section>
+    </section> 
 
-    <section class="mutliplayer-page" id="multiplayer-page">
-      <h2>Multiplayer</h2>
-
-      <div class="options">
-        <button id="new-game-btn">Create a game</button>
-        <span>OR</span>
-        <input type="text" name="game-code" id="game-code-input" placeholder="Enter game code">
-        <button id="join-game-btn">Join Game</button>
-      </div>
-    </section>
+    <!-- Support Panel -->
 
     <section class="card" id="support">
       <a href="https://www.paypal.me/smeedel" target="_blank">
@@ -199,7 +217,11 @@
       </a>
     </section>
 
+    <!-- User settings -->
+
     <section class="card settings" id="settings">
+      <!-- Theme selection -->
+
       <section class="themes">
         <h2>Themes</h2>
 
@@ -220,7 +242,11 @@
       </section>
     </section>
 
-    <section class="card profile" id="user-authentication">
+    <!-- User Authentication panel -->
+
+    <section class="card user-authentication" id="user-authentication">
+      <!-- Register form -->
+
       <form id="register">
         <p>register</p>
 
@@ -231,6 +257,8 @@
 
         <p class="form-error" id="signup-error">There was an error signing you up</p>
       </form>
+
+      <!-- Login form -->
 
       <form id="login">
         <p>login</p>
@@ -244,7 +272,11 @@
       </form>
     </section>
 
+    <!-- User stats -->
+
     <section class="user-stats" id="user-stats">
+      <!-- User pbs table -->
+
       <table id="user-pbs">
         <thead>
           <tr>
@@ -256,6 +288,8 @@
 
         <tbody></tbody>
       </table>
+
+      <!-- Table showing all the user's past results -->
 
       <table id="all-results" class="all-results">
         <thead>
@@ -271,23 +305,27 @@
     </section>
   </main>
 
+  <!-- Footer -->
+
   <footer>
-    <div class="stats" id="stats">
-      <div class="stat">
+    <!-- User's current stats -->
+
+    <div class="current-stats" id="stats">
+      <div class="current-stat">
         <div>
           <h2 id="timer">15</h2>
           <p>time</p>
         </div>
       </div>
     
-      <div class="stat">
+      <div class="current-stat">
         <div>
           <h2 class="wpm">0</h2>
           <p>wpm</p>
         </div>
       </div>
 
-      <div class="stat">
+      <div class="current-stat">
         <div>
           <h2 class="cpm">0</h2>
           <p>cpm</p>
@@ -297,7 +335,6 @@
   </footer>
 
   <script src="https://kit.fontawesome.com/e02b0205d6.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   <script src="./resources/scripts/script.js"></script>
 </body>
 </html>

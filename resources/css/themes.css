@@ -1,0 +1,395 @@
+/***************LIGHT MODE***************/
+
+body.light {
+  background-color: #efe8e6;
+  color: #26243d;
+}
+
+body.light select {
+  background-color: #dfd8d6;
+}
+
+body.light li i:hover {
+  color: #dfd8d6;
+}
+
+body.light .mobile-navigation {
+  background-color: #dfd8d6;
+}
+
+body.light .text-container {
+  color: rgb(22, 22, 22);
+}
+
+body.light .correct {
+  color: #dfd8d6;
+}
+
+body.light .user-input {
+  color: rgb(22, 22, 22);
+  border-bottom-color: #dfd8d6;
+}
+
+body.light .wrapper {
+  background-color: #dfd8d6;
+}
+
+body.light .keys div {
+  background-color: #efefee;
+  color: rgb(22, 22, 22);
+}
+
+body.light .keys div.pressed {
+  background-color: #e4e4e4;
+}
+
+body.light footer {
+  background-color: #dfd8d6;
+}
+
+body.light .card {
+  background-color: #dfd8d6;
+}
+
+body.light td {
+  color: rgb(22, 22, 22);
+}
+
+body.light tbody tr:nth-child(odd) {
+  background-color: #dfd8d6;
+}
+
+body.light .hamburger i {
+  color: rgb(22, 22, 22);
+}
+
+body.dark .capslock p,
+body.dark .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
+
+/****************DARK MODE***************/
+
+body.dark {
+  background-color: #242933;
+  color: #af8750;
+}
+
+body.dark select {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.dark li i:hover {
+  color: #af8750;
+}
+
+body.dark .mobile-navigation {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark .text-container {
+  color: rgb(89, 97, 114);
+}
+
+body.dark .correct {
+  color: #fff;
+}
+
+body.dark .user-input {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+body.dark .wrapper {
+  background-color: rgb(43, 49, 59);
+}
+
+body.dark .keys div {
+  background-color: #af8750;
+  color: #fff;
+}
+
+body.dark .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.dark footer {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark .card {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark td {
+  color: #fff;
+}
+
+body.dark tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dark .hamburger i {
+  color: #fff;
+}
+
+body.dark .capslock {
+  background-color: #af8750;
+}
+
+body.dark .capslock p,
+body.dark .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
+
+/***************COW THEME***************/
+
+body.cow {
+  background-color: #ffbd59;
+  color: rgb(22, 22, 22);
+}
+
+body.cow select {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.cow li i {
+  color: rgb(22, 22, 22);
+}
+
+body.cow li i:hover {
+  color: rgb(89, 97, 114);
+}
+
+body.cow .mobile-navigation {
+  background-color: #ffbd59;
+}
+
+body.cow .text-container {
+  color: rgb(22, 22, 22);
+}
+
+body.cow .correct {
+  color: #f8a62c;
+}
+
+body.cow .user-input {
+  color: rgb(22, 22, 22);
+  border-bottom-color: rgb(22, 22, 22);
+}
+
+body.cow .wrapper {
+  background-color: #e6ab52;
+}
+
+body.cow .keys div {
+  background-color: #ffbd59;
+  color: #fff;
+}
+
+body.cow .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.cow footer {
+  background-color: #e6ab52;
+}
+
+body.cow .card {
+  background-color: #ffbd59;
+}
+
+body.cow td {
+  color: #fff;
+}
+
+body.cow tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.cow .hamburger i {
+  color: rgb(22, 22, 22);
+}
+
+body.cow .capslock {
+  background-color: #e6ab52;
+}
+
+body.cow .capslock p,
+body.cow .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
+
+/***************DARCULA THEME***************/
+
+body.dracula {
+  background-color: #282a36;
+  color: rgb(128, 80, 175);
+}
+
+body.dracula select {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.dracula li i {
+  color: rgb(128, 80, 175);
+}
+
+body.dracula li i:hover {
+  color: rgb(155, 119, 190);
+}
+
+body.dracula .mobile-navigation {
+  background-color: #282a36;
+}
+
+body.dracula .text-container {
+  color: rgb(128, 80, 175);
+}
+
+body.dracula .correct {
+  color: rgb(22, 22, 22);
+}
+
+body.dracula .user-input {
+  color: rgb(128, 80, 175);
+  border-bottom-color: rgb(22, 22, 22);
+}
+
+body.dracula .wrapper {
+  background-color: #2c2e3a;
+}
+
+body.dracula .keys div {
+  background-color: rgb(128, 80, 175);
+  color: #fff;
+}
+
+body.dracula .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.dracula footer {
+  background-color: #2c2e3a;
+}
+
+body.dracula .card {
+  background-color: #282a36;
+}
+
+body.dracula td {
+  color: #fff;
+}
+
+body.dracula tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.dracula .hamburger i {
+  color: rgb(128, 80, 175);
+}
+
+body.dracula .capslock {
+  background-color: rgb(128, 80, 175);
+}
+
+body.dracula .capslock p,
+body.dracula .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
+
+/***************INVERTED DRACULA THEME***************/
+
+body.invert-dracula {
+  background-color: rgb(128, 80, 175);
+  color: #282a36;
+}
+
+body.invert-dracula select {
+  background-color: rgb(27, 31, 38);
+  color: #fff;
+}
+
+body.invert-dracula nav li span {
+  color: #282a36;
+}
+
+body.invert-dracula li i {
+  color: #282a36;
+}
+
+body.invert-dracula li i:hover {
+  color: #4e4f52;
+}
+
+body.invert-dracula .mobile-navigation {
+  background-color: rgb(128, 80, 175);
+}
+
+body.invert-dracula .mobile-navigation ul li {
+  color: #282a36;
+}
+
+body.invert-dracula .text-container {
+  color: #282a36;
+}
+
+body.invert-dracula .correct {
+  color: rgb(145, 100, 189);
+}
+
+body.invert-dracula .user-input {
+  color: #282a36;
+  border-bottom-color: rgb(22, 22, 22);
+}
+
+body.invert-dracula .wrapper {
+  background-color: #2c2e3a;
+}
+
+body.invert-dracula .keys div {
+  background-color: rgb(128, 80, 175);
+  color: #fff;
+}
+
+body.invert-dracula .keys div.pressed {
+  background-color: rgb(22, 22, 22);
+}
+
+body.invert-dracula footer {
+  background-color: #2c2e3a;
+  color: rgb(128, 80, 175);
+}
+
+body.invert-dracula .card {
+  background-color: rgb(128, 80, 175);
+}
+
+body.invert-dracula td {
+  color: #fff;
+}
+
+body.invert-dracula tbody tr:nth-child(odd) {
+  background-color: rgb(27, 31, 38);
+}
+
+body.invert-dracula .hamburger i {
+  color: #282a36;
+}
+
+body.invert-dracula .capslock {
+  background-color: rgb(128, 80, 175);
+}
+
+body.invert-dracula .capslock p,
+body.invert-dracula .capslock i {
+  font-size: 14px;
+  color: #fff;
+}
