@@ -21,7 +21,7 @@
   <title>Typingcow</title>
 </head>
 
-<body class="dark">
+<body>
   <div class="overlay" id="overlay"></div>
   <div class="mobile-overlay" id="mobile-overlay"></div>
 
@@ -129,7 +129,7 @@
       <div>
         <div class="result">
           <p>raw wpm</p>
-          <h2 class="raw-wpm">0</h2>
+          <h2 id="raw-wpm">0</h2>
         </div>
 
         <div class="result">
@@ -140,11 +140,6 @@
         <div class="result">
           <p>cpm</p>
           <h2 class="cpm">0</h2>
-        </div>
-      
-        <div class="result" style="display: none;">
-          <p>acc</p>
-          <h2 class="acc">0%</h2>
         </div>
       </div>
     </section>
@@ -225,7 +220,7 @@
       </section>
     </section>
 
-    <section class="card profile" id="profile">
+    <section class="card profile" id="user-authentication">
       <form id="register">
         <p>register</p>
 
@@ -256,7 +251,6 @@
             <th>time</th>
             <th>wpm</th>
             <th>cpm</th>
-            <th>acc</th>
           </tr>
         </thead>
 
@@ -268,7 +262,6 @@
           <tr>
             <th>wpm</th>
             <th>cpm</th>
-            <th>acc</th>
             <th>time</th>
           </tr>
         </thead>
@@ -300,13 +293,6 @@
           <p>cpm</p>
         </div>
       </div>
-
-      <!-- <div class="stat">
-        <div>
-          <h2 class="acc">0%</h2>
-          <p>acc</p>
-        </div>
-      </div> -->
     </div>
   </footer>
 
