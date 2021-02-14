@@ -102,8 +102,6 @@
 
     if (localStorage.getItem("theme")) {
       document.body.classList = localStorage.getItem("theme");
-    } else {
-      document.body.classList = "dark";
     }
 
     // Check if the username localstorage variable exists
