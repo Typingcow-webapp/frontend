@@ -89,6 +89,8 @@ nav li span {
 .checkbox {
   opacity: 0;
   position: absolute;
+  top: -1000px;
+  left: -1000px;
 }
 
 .checkbox:checked + .hamburger {
@@ -140,6 +142,7 @@ nav li span {
 
 .mobile-navigation li {
   display: block;
+  color: rgb(89, 97, 114);
 }
 
 /***************MAIN CONTENT***************/
