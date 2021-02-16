@@ -85,7 +85,8 @@
   function init() {
     // Set variable values
 
-    SERVER_URL = "https://dry-thicket-18544.herokuapp.com";
+    // SERVER_URL = "https://dry-thicket-18544.herokuapp.com";
+    SERVER_URL = "http://localhost:3000";
 
     RANDOM_QUOTE_API_URL =
       "https://api.quotable.io/random?minLength=85&maxLength=185";
