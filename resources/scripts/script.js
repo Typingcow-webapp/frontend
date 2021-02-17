@@ -363,7 +363,7 @@
   }
 
   function authenticate(username, password) {
-    const url = `${SERVER_URL}/api/login?username=${username}&password=${password}`;
+    const url = `${SERVER_URL}/api/login?username=${username.toLowerCase()}&password=${password}`;
 
     return new Promise((res, req) => {
       fetch(url, {
@@ -936,7 +936,7 @@
 
     // Store the username and password fields in variables before clearing them
 
-    const username = e.target[0].value;
+    const username = e.target[0].value.toLowerCase();
     const password = e.target[1].value;
 
     await register(username, password);
@@ -952,7 +952,7 @@
 
     e.preventDefault();
 
-    const username = e.target[0].value;
+    const username = e.target[0].value.toLowerCase();
     const password = e.target[1].value;
 
     await login(username, password);
