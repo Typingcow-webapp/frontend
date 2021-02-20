@@ -422,15 +422,21 @@ a {
 /***************SETTINGS***************/
 
 .settings {
-  justify-content: left;
+  justify-content: flex-start;
   align-items: flex-start;
   padding: 100px;
   text-align: left;
+  flex-direction: column;
+}
+
+.settings section {
+  margin-bottom: 60px;
+  width: 100%;
 }
 
 .settings h2 {
   font-size: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /***************THEME SELECTION***************/
@@ -474,6 +480,29 @@ a {
 .themes label[for="invert-dracula"] {
   background-color: rgb(152, 101, 204);
   color: #2c2e3a;
+}
+
+/***************DANGER ZONE***************/
+
+.danger-zone h2 {
+  color: rgb(255, 85, 85);
+}
+
+.danger-zone h3 {
+  font-size: 18px;
+  color: rgb(89, 97, 114);
+}
+
+/***************CHANGE PASSWORD***************/
+
+.reset-password form {
+  width: 100%;
+}
+
+.reset-password label {
+  font-size: 15px;
+  margin: 15px 0;
+  display: block;
 }
 
 /***************USER AUTHENTICATION****************/

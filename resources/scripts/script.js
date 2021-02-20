@@ -49,6 +49,11 @@
   const settings = document.getElementById("settings");
   const themes = document.querySelectorAll("input[type='radio']");
 
+  // User Password Change Related
+
+  const changePasswordForm = document.getElementById("change-password");
+  const newPasswordInput = document.getElementById("new-password");
+
   // Authentication Section Related
 
   const userAuthentication = document.getElementById("user-authentication");
@@ -697,6 +702,26 @@
 
       document.body.classList = localStorage.getItem("theme");
     });
+  });
+
+  changePasswordForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    fetch(`${SERVER_URL}/api/user/resetpass`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        newpass: newPasswordInput.value,
+      }),
+    });
+
+    settings.style.display = "none";
+    overlay.style.display = "none";
+
+    newPasswordInput.value = "";
   });
 
   profileBtns.forEach((el) => {
