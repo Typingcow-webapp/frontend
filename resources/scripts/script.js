@@ -623,6 +623,10 @@
   });
 
   timeChoice.addEventListener("change", (e) => {
+    if (keyPressed) {
+      restart();
+    }
+
     // Get the selected option out of the dropdown and assign it to the selectedTime variable
 
     selectedTime = +e.target.options[timeChoice.selectedIndex].value;
