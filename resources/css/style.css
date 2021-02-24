@@ -51,8 +51,11 @@ nav div {
 select {
   outline: none;
   padding: 8px 13px;
-  border-radius: 10px;
   border: none;
+}
+
+.time-selection {
+  border-radius: 10px;
 }
 
 /* All the navigation buttons */
@@ -440,6 +443,13 @@ a {
 }
 
 /***************THEME SELECTION***************/
+
+.theme-selection {
+  background-color: rgb(89, 97, 114);
+  width: 100%;
+  border-radius: 5px;
+  color: #fff;
+}
 
 .themes input {
   opacity: 0;

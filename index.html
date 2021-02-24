@@ -11,15 +11,18 @@
     content="typing, test, typing test, typing-test, cow, wpm, words per minute, words-per-minute, cpm, characters per minute, characters-per-minute, chars per minute, chars-per-minute, typingcow, typing-cow, typing cow, cow type, cow typing, typingcows, typecows, typing cows, type cows, cow typing, cowtype, cowtypes, cow type, cow types, typing website, minimalist, minimalistic, minimalistic typing website, minimalistic website, minimalistic web app, custom typing, custom test, custom typing test, random words, quotes, words, random quotes, sentences, random sentences, long sentences, short sentences, minimalist typing test, minimalist typing website, minimalistic themes, themes, custom, customisable, new typing site, new typing website">
   <meta property="og:site_name" content="Typingcow">
   <meta property="og:url" content="https://typingcow.com">
-  <meta property="og:description" content="A minimalist web app t hat tests your typing speed. You can customize this web app to your liking so that you feel very comfortable on our platform">
+  <meta property="og:description" content="Typingcow.com is a customizable, clean and user-friendly web application that tests your typing speed. You have a wide variety of different themes to choose from, as well as a leaderboard displaying our fastest typers">
   <meta property="og:type" content="website">
   <meta name="og:image" content="https://typingcow.com/resources/images/cow.png">
   <meta name="theme-color" content="#FFBD59">
-  <meta name="twitter:title" content="Typingcow">
-  <meta name="twitter:image" content="https://typingcow.com/resources/images/cow.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:description" content="A minimalist web app t hat tests your typing speed. You can customize this web app to your liking so that you feel very comfortable on our platform">
-  <script data-ad-client="ca-pub-3001013065990840" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7GVVLMY1VY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-7GVVLMY1VY');
+  </script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/ico" href="./resources/images/favicon.ico" />
@@ -49,7 +52,7 @@
 
         <h1 class="logo" id="logo">typingcow</h1>
 
-        <select id="time">
+        <select id="time" class="time-selection">
           <option value="15">15 seconds</option>
           <option value="30">30 seconds</option>
           <option value="60">60 seconds</option>
@@ -60,7 +63,7 @@
       <!-- Navigation Buttons -->
 
       <ul>
-        <li class="leaderboardBtn"><i class="fas fa-users"></i></li>
+        <li class="leaderboardBtn"><i class="fas fa-trophy"></i></li>
         <li><a href="https://discord.gg/3ytxmYcF3M" target="_blank"><i class="fab fa-discord"></i></a></li>
         <li id="supportBtn" style="display: none;"><i class="fas fa-hand-holding-usd"></i></li>
         <li class="settingsBtn"><i class="fas fa-cog"></i></li>
@@ -234,7 +237,7 @@
       <section class="themes">
         <h2>Themes</h2>
 
-        <input type="radio" name="theme" id="light">
+        <!-- <input type="radio" name="theme" id="light">
         <label for="light">Light</label>
 
         <input type="radio" name="theme" id="dark">
@@ -247,7 +250,15 @@
         <label for="dracula">Dracula</label>
 
         <input type="radio" name="theme" id="invert-dracula">
-        <label for="invert-dracula">Invert Dracula</label>
+        <label for="invert-dracula">Invert Dracula</label> -->
+
+        <select class="theme-selection" id="theme-selection">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="cow">Cow</option>
+          <option value="dracula">Dracula</option>
+          <option value="invert-dracula">Invert Dracula</option>
+        </select>
       </section>
 
       <section class="danger-zone">
@@ -363,5 +374,9 @@
 
   <script src="https://kit.fontawesome.com/e02b0205d6.js" crossorigin="anonymous"></script>
   <script src="./resources/scripts/script.js"></script>
+
+  <noscript>
+    Your browser does not support Javascript
+  </noscript>
 </body>
 </html>

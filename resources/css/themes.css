@@ -5,7 +5,7 @@ body.light {
   color: #26243d;
 }
 
-body.light select {
+body.light .time-selection {
   background-color: #dfd8d6;
 }
 
@@ -76,7 +76,7 @@ body.dark {
   color: #af8750;
 }
 
-body.dark select {
+body.dark .time-selection {
   background-color: rgb(27, 31, 38);
   color: #fff;
 }
@@ -152,7 +152,7 @@ body.cow {
   color: rgb(22, 22, 22);
 }
 
-body.cow select {
+body.cow .time-selection {
   background-color: rgb(27, 31, 38);
   color: #fff;
 }
@@ -232,7 +232,7 @@ body.dracula {
   color: rgb(128, 80, 175);
 }
 
-body.dracula select {
+body.dracula .time-selection {
   background-color: rgb(27, 31, 38);
   color: #fff;
 }
@@ -312,7 +312,7 @@ body.invert-dracula {
   color: #282a36;
 }
 
-body.invert-dracula select {
+body.invert-dracula .time-selection {
   background-color: rgb(27, 31, 38);
   color: #fff;
 }

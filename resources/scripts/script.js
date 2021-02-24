@@ -47,7 +47,7 @@
   // User Settings Related
 
   const settings = document.getElementById("settings");
-  const themes = document.querySelectorAll("input[type='radio']");
+  const themes = document.getElementById("theme-selection");
 
   // User Password Change Related
 
@@ -103,6 +103,12 @@
 
     if (localStorage.getItem("theme")) {
       document.body.classList = localStorage.getItem("theme");
+
+      for (let i = 0; i < themes.children.length; i++) {
+        if (localStorage.getItem("theme") === themes.children[i].value) {
+          themes.children[i].setAttribute("selected", "true");
+        }
+      }
     }
 
     // Check if the username localstorage variable exists
@@ -692,20 +698,17 @@
     });
   });
 
-  // Loop over all the themes
+  // Add an event to each theme which gets triggered whenever we click on it if it wasn't already selected
 
-  themes.forEach((el) => {
-    // Add an event to each theme which gets triggered whenever we click on it if it wasn't already selected
+  themes.addEventListener("change", (e) => {
+    console.log("yass");
+    // Set the localstorage variable "theme" to the id of the theme we selected
 
-    el.addEventListener("change", (e) => {
-      // Set the localstorage variable "theme" to the id of the theme we selected
+    localStorage.setItem("theme", e.target.value);
 
-      localStorage.setItem("theme", e.target.id);
+    // Set the class of the body element to the new theme we selected
 
-      // Set the class of the body element to the new theme we selected
-
-      document.body.classList = localStorage.getItem("theme");
-    });
+    document.body.classList = localStorage.getItem("theme");
   });
 
   changePasswordForm.addEventListener("submit", (e) => {
