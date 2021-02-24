@@ -78,8 +78,6 @@
   let selectedTime;
   let timerIntervalId;
   let keyPressed;
-  let clickedLeaderboard;
-  let clickedProfile;
   let numOfChars;
   let allCorrect;
 
@@ -98,8 +96,6 @@
     keyPressed = false;
     selectedTime = 15;
     mistakes = 0;
-    clickedLeaderboard = false;
-    clickedProfile = false;
     numOfChars = 0;
     allCorrect = true;
 
@@ -573,6 +569,14 @@
   }
 
   async function displayLeaderboard() {
+    // Clear the leaderboard in case of a new score
+
+    while (leaderboard.children[0].children[1].firstChild) {
+      leaderboard.children[0].children[1].removeChild(
+        leaderboard.children[0].children[1].firstChild
+      );
+    }
+
     // This variable will store the rank of the user
 
     let rank = 1;
@@ -658,11 +662,7 @@
 
         // If the user has never clicked the leaderboard
 
-        if (!clickedLeaderboard) {
-          displayLeaderboard();
-
-          clickedLeaderboard = true;
-        }
+        displayLeaderboard();
       }
     });
   });
@@ -756,77 +756,81 @@
 
         // If we never clicked the profile button
 
-        if (!clickedProfile) {
-          // Get the user's personal bests
-
-          const userPbs = await getUserPbs();
-
-          // loop over all the user's personal bests
-
-          userPbs.forEach((el) => {
-            // Create a table row element
-
-            const tableRow = document.createElement("tr");
-
-            // Create table data elements
-
-            const timer = document.createElement("td");
-            const wpm = document.createElement("td");
-            const cpm = document.createElement("td");
-
-            // Set the text content of these table data elements to their corresponding values
-
-            timer.textContent = el.timer;
-            wpm.textContent = el.wpm;
-            cpm.textContent = el.cpm;
-
-            // Append these table data elements to the table row
-
-            tableRow.appendChild(timer);
-            tableRow.appendChild(wpm);
-            tableRow.appendChild(cpm);
-
-            // Append the table row to the user personal best table
-
-            userPbsTable.appendChild(tableRow);
-          });
-
-          // Get all the user stats
-
-          const userResults = await getUserStats();
-
-          // Loop over all the user stats
-
-          userResults.forEach((el) => {
-            // Create a table row element
-
-            const tableRow = document.createElement("tr");
-
-            // Create table data elements
-
-            const wpm = document.createElement("td");
-            const cpm = document.createElement("td");
-            const timer = document.createElement("td");
-
-            // Set the text content of these table data elements
-
-            wpm.textContent = el.wpm;
-            cpm.textContent = el.cpm;
-            timer.textContent = el.timer;
-
-            // Append these table data elements to the table row
-
-            tableRow.appendChild(wpm);
-            tableRow.appendChild(cpm);
-            tableRow.appendChild(timer);
-
-            // Prepend the table row to the user results table
-
-            userResultsTable.prepend(tableRow);
-          });
-
-          clickedProfile = true;
+        while (userPbsTable.firstChild) {
+          userPbsTable.removeChild(userPbsTable.firstChild);
         }
+
+        while (userResultsTable.firstChild) {
+          userResultsTable.removeChild(userResultsTable.firstChild);
+        }
+
+        // Get the user's personal bests
+
+        const userPbs = await getUserPbs();
+
+        // loop over all the user's personal bests
+
+        userPbs.forEach((el) => {
+          // Create a table row element
+
+          const tableRow = document.createElement("tr");
+
+          // Create table data elements
+
+          const timer = document.createElement("td");
+          const wpm = document.createElement("td");
+          const cpm = document.createElement("td");
+
+          // Set the text content of these table data elements to their corresponding values
+
+          timer.textContent = el.timer;
+          wpm.textContent = el.wpm;
+          cpm.textContent = el.cpm;
+
+          // Append these table data elements to the table row
+
+          tableRow.appendChild(timer);
+          tableRow.appendChild(wpm);
+          tableRow.appendChild(cpm);
+
+          // Append the table row to the user personal best table
+
+          userPbsTable.appendChild(tableRow);
+        });
+
+        // Get all the user stats
+
+        const userResults = await getUserStats();
+
+        // Loop over all the user stats
+
+        userResults.forEach((el) => {
+          // Create a table row element
+
+          const tableRow = document.createElement("tr");
+
+          // Create table data elements
+
+          const wpm = document.createElement("td");
+          const cpm = document.createElement("td");
+          const timer = document.createElement("td");
+
+          // Set the text content of these table data elements
+
+          wpm.textContent = el.wpm;
+          cpm.textContent = el.cpm;
+          timer.textContent = el.timer;
+
+          // Append these table data elements to the table row
+
+          tableRow.appendChild(wpm);
+          tableRow.appendChild(cpm);
+          tableRow.appendChild(timer);
+
+          // Prepend the table row to the user results table
+
+          userResultsTable.prepend(tableRow);
+        });
       }
     });
   });
